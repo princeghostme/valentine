@@ -57,11 +57,11 @@ export class RejectMessage implements OnInit, OnDestroy {
 
   // 🔄 Auto return logic
   private startAutoReset(): void {
-    this.timerId = window.setTimeout(() => {
+    this.timerId = window?.setTimeout(() => {
       this.onReset();
     }, 5000);
 
-    this.countdownId = window.setInterval(() => {
+    this.countdownId = window?.setInterval(() => {
       this.countdown--;
     }, 1000);
   }
