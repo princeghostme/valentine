@@ -45,7 +45,7 @@
           <input
             type="text"
             placeholder="Enter your special someone's name"
-            [value]="valnetineName()"
+            [value]="valentineName()"
             (input)="updateValentineName($any($event.target).value)"
             class="w-full rounded-2xl border-2 border-pink-200 bg-white/90 px-5 py-4 text-lg text-pink-700 placeholder-pink-300 shadow-lg transition-all duration-300 focus:border-pink-300 focus:bg-white focus:outline-none focus:ring-4 focus:ring-pink-100 group-hover:border-pink-300"
           />
@@ -59,7 +59,7 @@
         <button
           type="button"
           (click)="submit()"
-          [disabled]="!yourName().trim() || !valnetineName().trim()"
+          [disabled]="!yourName().trim() || !valentineName().trim()"
           class="group relative flex-1 overflow-hidden rounded-2xl bg-gradient-to-r from-pink-600 to-pink-500 px-6 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-pink-200 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
         >
           <span class="relative z-10 flex items-center justify-center gap-2">
@@ -73,7 +73,7 @@
         <button
           type="button"
           (click)="genrateUrl()"
-          [disabled]="!yourName().trim() || !valnetineName().trim()"
+          [disabled]="!yourName().trim() || !valentineName().trim()"
           class="group relative flex-1 overflow-hidden rounded-2xl border-2 border-pink-300 bg-white px-6 py-4 text-lg font-semibold text-pink-600 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-pink-400 hover:bg-pink-50 hover:shadow-xl active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
         >
           <span class="relative z-10 flex items-center justify-center gap-2">

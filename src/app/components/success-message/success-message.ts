@@ -17,7 +17,7 @@ import { Observable } from 'rxjs';
 export class SuccessMessage {
   name = input<Queryparams>({
     yourName: '',
-    valnetineName: '',
+    valentineName: '',
   });
 
   @Output() reset = new EventEmitter<proposalState>();

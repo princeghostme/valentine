@@ -20,7 +20,7 @@ export type proposalState = 'initial' | 'accepted' | 'rejected' | null;
 export class Home implements OnInit {
   public detail = signal<Queryparams>({
     yourName: '',
-    valnetineName: '',
+    valentineName: '',
   });
   public currentDay = signal<ValentineDay>(this.getCurrentDay());
 

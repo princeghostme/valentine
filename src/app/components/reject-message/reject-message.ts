@@ -32,7 +32,7 @@ export class RejectMessage implements OnInit, OnDestroy {
 
   name = input<Queryparams>({
     yourName: '',
-    valnetineName: '',
+    valentineName: '',
   });
 
   valentineDay = input.required<ValentineDay>();

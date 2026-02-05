@@ -34,7 +34,7 @@ export class PrposeMessage implements OnInit, AfterViewInit {
   /* -------------------- Inputs -------------------- */
   name = input<Queryparams>({
     yourName: '',
-    valnetineName: '',
+    valentineName: '',
   });
 
   valentineDay = input.required<ValentineDay>();

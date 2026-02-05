@@ -12,7 +12,7 @@ import { ValentineDay } from '../../interfaces/valentine-day';
 })
 export class ValentineSelection {
   // Signal to store input value
-  valnetineName = signal('');
+  valentineName = signal('');
   yourName = signal('');
   genratedUrl = signal('');
 
@@ -24,7 +24,7 @@ export class ValentineSelection {
   ) {}
 
   updateValentineName(value: string): void {
-    this.valnetineName.set(value);
+    this.valentineName.set(value);
   }
 
   updateYourName(value: string): void {
@@ -34,7 +34,7 @@ export class ValentineSelection {
   private async EncryptValentineDetail() {
     const _val:Queryparams = {
       yourName: this.yourName().trim(),
-      valnetineName: this.valnetineName().trim(),
+      valentineName: this.valentineName().trim(),
     }
     return this.encryptService.encrypt(JSON.stringify(_val));
   }
