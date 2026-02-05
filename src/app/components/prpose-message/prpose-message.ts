@@ -44,20 +44,15 @@ export class PrposeMessage implements OnInit {
 
   /* ================= VIEW ================= */
 
-  @ViewChild('actionZone')
-  actionZone?: ElementRef<HTMLElement>;
+  @ViewChild('actionZone') actionZone?: ElementRef<HTMLElement>;
+  @ViewChild('yesZone') yesZone?: ElementRef<HTMLElement>;
 
   /* ================= STATE ================= */
 
   content$!: Observable<ValentineProposeContent>;
   isMobile = false;
 
-  noButtonStyle: {
-    left?: string;
-    top?: string;
-    transform?: string;
-    transition?: string;
-  } = {
+  noButtonStyle = {
     left: '50%',
     top: '50%',
     transform: 'translate(-50%, -50%)',
@@ -71,9 +66,7 @@ export class PrposeMessage implements OnInit {
 
   private readonly buttonWidth = 120;
   private readonly buttonHeight = 52;
-  private readonly minDistance = 90; // 🔑 prevents near jumps
-
-  /* ================= CONSTRUCTOR ================= */
+  private readonly minDistance = 90;
 
   constructor(
     private valentineService: ValentineContentService,
@@ -94,7 +87,7 @@ export class PrposeMessage implements OnInit {
       this.valentineDay()
     );
 
-    // Wait until content renders, then center NO button
+    // Wait until DOM is rendered (because of @if + async)
     this.content$.subscribe(() => {
       setTimeout(() => this.centerNoButton(), 0);
     });
@@ -113,12 +106,16 @@ export class PrposeMessage implements OnInit {
   /* ================= POSITIONING ================= */
 
   private centerNoButton(): void {
-    if (!this.actionZone || !isPlatformBrowser(this.platformId)) return;
+    if (!this.actionZone || !this.yesZone || !isPlatformBrowser(this.platformId)) return;
 
-    const rect = this.actionZone.nativeElement.getBoundingClientRect();
+    const containerRect = this.actionZone.nativeElement.getBoundingClientRect();
+    const yesRect = this.yesZone.nativeElement.getBoundingClientRect();
 
-    const x = (rect.width - this.buttonWidth) / 2;
-    const y = (rect.height - this.buttonHeight) / 2;
+    // Start BELOW the YES button
+    const minY = yesRect.bottom - containerRect.top + 16;
+
+    const x = (containerRect.width - this.buttonWidth) / 2;
+    const y = minY + 10;
 
     this.lastX = x;
     this.lastY = y;
@@ -132,12 +129,14 @@ export class PrposeMessage implements OnInit {
   }
 
   private moveNoButton(): void {
-    if (!this.actionZone || !isPlatformBrowser(this.platformId)) return;
+    if (!this.actionZone || !this.yesZone || !isPlatformBrowser(this.platformId)) return;
 
-    const rect = this.actionZone.nativeElement.getBoundingClientRect();
+    const containerRect = this.actionZone.nativeElement.getBoundingClientRect();
+    const yesRect = this.yesZone.nativeElement.getBoundingClientRect();
 
-    const maxX = rect.width - this.buttonWidth;
-    const maxY = rect.height - this.buttonHeight;
+    const minY = yesRect.bottom - containerRect.top + 16;
+    const maxX = containerRect.width - this.buttonWidth;
+    const maxY = containerRect.height - this.buttonHeight;
 
     let x = 0;
     let y = 0;
@@ -146,7 +145,7 @@ export class PrposeMessage implements OnInit {
 
     do {
       x = Math.random() * maxX;
-      y = Math.random() * maxY;
+      y = minY + Math.random() * (maxY - minY);
       distance = Math.hypot(x - this.lastX, y - this.lastY);
       attempts++;
     } while (distance < this.minDistance && attempts < 15);
