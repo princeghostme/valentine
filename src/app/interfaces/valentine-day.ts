@@ -1,7 +1,7 @@
 /* -------------------- Days -------------------- */
 
 export type ValentineDay =
-  | 'rose'
+  | 'pink'
   | 'propose'
   | 'chocolate'
   | 'teddy'

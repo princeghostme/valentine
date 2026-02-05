@@ -1,39 +1,188 @@
-<nav
-  class="fixed top-5 left-1/2 z-50 w-[92%] max-w-6xl -translate-x-1/2 "
->
-  <div
-    class="relative rounded-3xl bg-white/80 backdrop-blur-lg shadow-xl ring-1 ring-rose-100 "
-  >
-    <!-- Soft glow -->
-    <div
-      class="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-r from-rose-100/40 via-pink-100/40 to-rose-100/40"
-    ></div>
+<nav class="fixed top-5 left-1/2 z-50 w-[92%] max-w-6xl -translate-x-1/2">
+  <div class="relative rounded-2xl bg-white/95 backdrop-blur-xl shadow-2xl ring-1 ring-rose-200/50 overflow-hidden">
 
-    <div class="relative flex h-16 items-center justify-between px-6 ">
+    <!-- Header Content -->
+    <div class="relative flex h-14 md:h-16 items-center justify-between px-4 md:px-6">
 
-      <!-- Logo -->
-      <div class="flex items-center gap-2">
-        <span class="text-2xl">💖</span>
-        <h1
-          class="text-2xl font-extrabold tracking-tight text-rose-700"
-        >
-          Valentine
-        </h1>
+      <!-- Left Section: Logo with Date -->
+      <div class="flex items-center gap-3">
+        <!-- Heart Logo -->
+        <div class="relative">
+          <div class="absolute -inset-2 bg-gradient-to-r from-pink-400 to-rose-500 rounded-full opacity-20 blur-sm animate-pulse"></div>
+          <div class="relative flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500 to-rose-500 shadow-lg">
+            <span class="text-lg md:text-xl animate-heartbeat">❤️</span>
+          </div>
+        </div>
+
+        <!-- Date Display -->
+        <div class="hidden md:block">
+          <div class="text-[10px] font-medium text-rose-500/70 uppercase tracking-wider">
+            Today
+          </div>
+          <div class="flex items-baseline gap-1.5">
+            <span class="text-sm font-bold text-rose-700">{{ currentDate }}</span>
+            <span class="text-[10px] text-pink-400 font-medium">{{ currentDay }}</span>
+          </div>
+        </div>
       </div>
 
-      <!-- CTA -->
-      <a
-        href="/valentine"
-        class="group inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-500 px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-rose-400"
-      >
-        <span>Get Started</span>
-        <span
-          class="transition-transform duration-200 group-hover:translate-x-1"
-        >
-          💘
-        </span>
-      </a>
+      <!-- Center Section: Countdown -->
+      <div class="hidden md:flex items-center gap-3">
+        <!-- Countdown Display -->
+        <div class="relative group" (click)="showNotificationPopup()">
+          <!-- Notification Badge -->
+          <div *ngIf="showNotification" class="absolute -top-1 -right-1 z-10">
+            <div class="relative">
+              <div class="absolute inset-0 rounded-full bg-rose-500 animate-ping"></div>
+              <div class="relative flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-r from-rose-500 to-pink-500 shadow-md">
+                <span class="text-[8px] text-white font-bold">!</span>
+              </div>
+            </div>
+          </div>
 
+          <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gradient-to-r from-pink-50 to-rose-50 ring-1 ring-pink-200/30 hover:ring-2 hover:ring-pink-300 transition-all cursor-pointer">
+            <span class="text-xs text-rose-500">❤️</span>
+            <div class="flex flex-col">
+              <div class="text-[10px] font-medium text-rose-500/70 uppercase tracking-wider">
+                {{ daysToValentine <= 7 ? 'Coming Soon' : 'Valentine\'s' }}
+              </div>
+              <div class="flex items-baseline gap-1">
+                <span class="text-sm font-bold text-transparent bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text">
+                  {{ daysToValentine > 0 ? daysToValentine : -daysToValentine }}
+                </span>
+                <span class="text-[10px] text-pink-400 font-medium">
+                  {{ daysToValentine > 0 ? 'days' : 'days ago' }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Section: Time and Button -->
+      <div class="flex items-center gap-3">
+        <!-- Mobile Time & Countdown -->
+        <div class="md:hidden flex items-center gap-2">
+          <div class="flex flex-col items-end">
+            <div class="flex items-baseline gap-1">
+              <span class="text-sm font-medium text-rose-700">{{ currentTime }}</span>
+              <span class="text-xs text-pink-500">{{ currentTimeAMPM }}</span>
+            </div>
+            <div *ngIf="daysToValentine <= 30" class="text-[10px] text-rose-500 font-medium">
+              {{ daysToValentine }}d to ❤️
+            </div>
+          </div>
+        </div>
+
+        <!-- Desktop Time Display -->
+        <div class="hidden md:flex items-center gap-2 rounded-lg bg-pink-50/80 px-3 py-1.5 ring-1 ring-pink-200/30">
+          <span class="text-sm font-medium text-rose-700">{{ currentTime }}</span>
+          <span class="text-xs text-pink-500">{{ currentTimeAMPM }}</span>
+        </div>
+
+        <!-- CTA Button -->
+        <a [routerLink]="'/valentine'"
+           class="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-500 to-pink-500 text-sm font-semibold text-white shadow-md hover:shadow-lg transition-all">
+          <span class="flex items-center gap-1.5">
+            <span>Create</span>
+            <span>💌</span>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobile Countdown Bar -->
+    <div *ngIf="isMobileView && daysToValentine <= 30" class="md:hidden border-t border-pink-200/30 px-4 py-2">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="text-rose-500">💝</span>
+          <span class="text-xs font-medium text-rose-700">
+            {{ getCountdownMessage() }}
+          </span>
+        </div>
+        <button (click)="showNotificationPopup()"
+                class="text-xs text-rose-500 hover:text-rose-600 font-medium">
+          View →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modern Notification Popup - No Grey Background -->
+  <div *ngIf="showNotificationPopupFlag"
+       class="fixed inset-0 z-50 flex items-center justify-center"
+       (click)="closeNotificationPopup()">
+
+    <!-- Transparent Overlay with Blur -->
+    <div class="absolute inset-0 backdrop-blur-sm"></div>
+
+    <!-- Popup Card -->
+    <div class="relative mx-4 w-full max-w-sm rounded-2xl overflow-hidden shadow-2xl border border-rose-200/30"
+         (click)="$event.stopPropagation()">
+
+      <!-- Popup Background -->
+      <div class="absolute inset-0 bg-gradient-to-b from-white to-pink-50"></div>
+
+      <!-- Glow Effect -->
+      <div class="absolute -inset-4 bg-gradient-to-r from-pink-400/20 via-rose-400/10 to-pink-400/20 blur-xl"></div>
+
+      <div class="relative z-10 p-6">
+        <!-- Close Button -->
+        <button (click)="closeNotificationPopup()"
+                class="absolute right-4 top-4 text-rose-400 hover:text-rose-600 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <!-- Content -->
+        <div class="text-center">
+          <!-- Heart Icon -->
+          <div class="mb-4 flex justify-center">
+            <div class="relative">
+              <div class="absolute -inset-4 bg-gradient-to-r from-rose-400 to-pink-400 rounded-full blur opacity-30"></div>
+              <div class="relative bg-gradient-to-r from-rose-500 to-pink-500 rounded-full p-3">
+                <span class="text-2xl">💖</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Title -->
+          <h3 class="mb-3 text-lg font-bold text-rose-700">
+            Valentine's Day Countdown
+          </h3>
+
+          <!-- Countdown Display -->
+          <div class="mb-4 rounded-xl bg-gradient-to-r from-pink-100 to-rose-100 p-4 border border-pink-200/50">
+            <div class="text-4xl font-bold text-transparent bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text mb-1">
+              {{ daysToValentine > 0 ? daysToValentine : -daysToValentine }}
+            </div>
+            <div class="text-sm text-rose-500">
+              {{ daysToValentine > 0 ? 'days until Valentine\'s Day' : 'days since Valentine\'s Day' }}
+            </div>
+            <div *ngIf="daysToValentine > 0 && daysToValentine <= 7" class="mt-2 text-xs text-rose-400">
+              {{ hoursToValentine }}h {{ minutesToValentine }}m remaining
+            </div>
+          </div>
+
+          <!-- Message -->
+          <p class="mb-6 text-sm text-rose-600">
+            {{ getCountdownMessage() }}
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex gap-3">
+            <button (click)="closeNotificationPopup()"
+                    class="flex-1 px-4 py-2 rounded-lg border border-rose-300 bg-white text-rose-600 font-medium text-sm hover:bg-pink-50 transition-colors">
+              Remind Later
+            </button>
+            <button (click)="createValentineCard()"
+                    class="flex-1 px-4 py-2 rounded-lg bg-gradient-to-r from-rose-500 to-pink-500 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all">
+              Create card 💝
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </nav>

@@ -1,11 +1,11 @@
 {
-  "rose": {
+  "pink": {
     "propose": {
-      "title": "A Rose for You 🌹",
+      "title": "A pink for You 🌹",
       "intro": "There’s something I’ve been holding in my heart…",
       "line1": "Some feelings are too gentle for words, yet too true to remain unspoken.",
-      "line2": "Just as a rose holds beauty in its silence, so does my heart hold love for you.",
-      "question": "Will you accept this rose, and let our story bloom together? 💕",
+      "line2": "Just as a pink holds beauty in its silence, so does my heart hold love for you.",
+      "question": "Will you accept this pink, and let our story bloom together? 💕",
       "signature": "Forever yours, with all my love 💖",
       "yesText": "I Accept with Love 🌹",
       "noText": "With Kindness, Not Now 🌸"
@@ -18,7 +18,7 @@
     "reject": {
       "title": "Your Truth Is Sacred 🌸",
       "lines": [
-        "I will hold this rose gently, until its time is right.",
+        "I will hold this pink gently, until its time is right.",
         "Your honesty is a gift I will always cherish.",
         "Even in waiting, my heart remains sincere."
       ]
@@ -90,7 +90,7 @@
     },
     "success": {
       "title": "My Heart Is Held 🧸",
-      "line1": "Your acceptance feels like a safe embrace I’ve been waiting for my whole life.",
+      "line1" : "Your acceptance feels like a safe embrace I’ve been waiting for my whole life.",
       "line2": "Thank you for allowing me to cherish you."
     },
     "reject": {

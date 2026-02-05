@@ -1,0 +1,48 @@
+/* Minimal animations for a clean look */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* Apply animations */
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-pulse {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* Smooth transitions */
+* {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Card hover effect (optional) */
+.relative:hover .shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(244, 63, 94, 0.1), 0 10px 10px -5px rgba(244, 63, 94, 0.04);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .p-6 {
+    padding: 1.25rem;
+  }
+
+  .max-w-md {
+    max-width: 90%;
+  }
+}

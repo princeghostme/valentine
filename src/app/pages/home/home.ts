@@ -33,7 +33,7 @@ export class Home implements OnInit {
 
     switch (date) {
       case 7:
-        return 'rose';
+        return 'pink';
       case 8:
         return 'propose';
       case 9:
