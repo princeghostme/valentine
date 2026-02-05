@@ -21,7 +21,7 @@ export interface ValentineProposeContent {
   question: string;
   signature: string;
   yesText: string;
-  noText: string;
+  noText?: string;
 }
 
 /* -------------------- Success -------------------- */
