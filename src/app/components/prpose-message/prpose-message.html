@@ -61,32 +61,34 @@
         </span>
       </button>
 
-      <!-- NO Button - Always dodges -->
+      <!-- NO Button Container for Desktop -->
       @if (c.noText) {
-        <button
-          data-no-button
-          type="button"
-          (mouseenter)="onNoButtonHover()"
-          (mousedown)="onNoButtonAttempt($event)"
-          (touchstart)="onNoButtonTouch($event)"
-          [ngStyle]="noButtonStyle"
-          class="group px-4 py-2.5 rounded-lg border border-pink-300 bg-white text-pink-600 font-semibold text-sm sm:text-base shadow-sm hover:shadow-md transition-all duration-200 hover:bg-pink-50 active:scale-[0.98] min-w-fit absolute z-10"
-        >
-          <span class="relative flex items-center gap-1.5 whitespace-nowrap">
-            {{ c.noText }}
-            <span class="opacity-70">🌸</span>
-          </span>
-        </button>
+        <div #desktopNoContainer class="relative min-w-[120px] min-h-[48px]">
+          <button
+            data-no-button
+            type="button"
+            (mouseenter)="onNoButtonHover()"
+            (mousedown)="onNoButtonAttempt($event)"
+            (touchstart)="onNoButtonTouch($event)"
+            [ngStyle]="noButtonStyle"
+            class="group px-4 py-2.5 rounded-lg border border-pink-300 bg-white text-pink-600 font-semibold text-sm sm:text-base shadow-sm hover:shadow-md transition-all duration-200 hover:bg-pink-50 active:scale-[0.98] min-w-fit absolute"
+          >
+            <span class="relative flex items-center gap-1.5 whitespace-nowrap">
+              {{ c.noText }}
+              <span class="opacity-70">🌸</span>
+            </span>
+          </button>
+        </div>
       }
     </div>
 
     <!-- Mobile: Buttons stacked -->
-    <div class="sm:hidden space-y-3 relative min-h-[200px]">
+    <div class="sm:hidden">
       <!-- YES Button (Mobile) -->
       <button
         type="button"
         (click)="onYes()"
-        class="group w-full px-5 py-3 rounded-lg bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold text-base shadow-md hover:shadow-lg transition-all duration-200 active:scale-[0.98]"
+        class="group w-full px-5 py-3 rounded-lg bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold text-base shadow-md hover:shadow-lg transition-all duration-200 active:scale-[0.98] mb-3"
       >
         <span class="relative flex items-center justify-center gap-2">
           {{ c.yesText }}
@@ -94,20 +96,22 @@
         </span>
       </button>
 
-      <!-- NO Button (Mobile) - Always dodges -->
+      <!-- NO Button Container for Mobile -->
       @if (c.noText) {
-        <button
-          data-no-button
-          type="button"
-          (touchstart)="onNoButtonTouch($event)"
-          [ngStyle]="noButtonStyle"
-          class="group w-full px-5 py-3 rounded-lg border border-pink-300 bg-white text-pink-600 font-semibold text-base shadow-sm hover:shadow-md transition-all duration-200 hover:bg-pink-50 active:scale-[0.98] absolute"
-        >
-          <span class="relative flex items-center justify-center gap-2">
-            {{ c.noText }}
-            <span class="opacity-70">🌸</span>
-          </span>
-        </button>
+        <div #mobileNoContainer class="relative w-full h-[60px]">
+          <button
+            data-no-button
+            type="button"
+            (touchstart)="onNoButtonTouch($event)"
+            [ngStyle]="noButtonStyle"
+            class="group w-full px-5 py-3 rounded-lg border border-pink-300 bg-white text-pink-600 font-semibold text-base shadow-sm hover:shadow-md transition-all duration-200 hover:bg-pink-50 active:scale-[0.98] absolute"
+          >
+            <span class="relative flex items-center justify-center gap-2">
+              {{ c.noText }}
+              <span class="opacity-70">🌸</span>
+            </span>
+          </button>
+        </div>
       }
     </div>
 
@@ -115,7 +119,7 @@
     @if (c.noText) {
       <div class="mt-4 text-center">
         <p class="text-xs text-pink-400 animate-pulse">
-        {{ c.noText }}
+          Try to click "No" if you can! 😉
         </p>
       </div>
     }
