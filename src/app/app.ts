@@ -1,8 +1,8 @@
 import { RouterOutlet } from '@angular/router';
 import { Footer } from "./components/footer/footer";
 import { Header } from "./components/header/header";
-import { Component, OnInit, HostListener } from '@angular/core';
-
+import { Component, OnInit, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +12,22 @@ import { Component, OnInit, HostListener } from '@angular/core';
 })
 export class App implements OnInit {
 
+  private isBrowser: boolean;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: any) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
+
   ngOnInit(): void {
-    this.initCursorEffect();
+    if (this.isBrowser) {
+      this.initCursorEffect();
+    }
   }
 
   @HostListener('mousemove', ['$event'])
   onMouseMove(event: MouseEvent): void {
+    if (!this.isBrowser) return;
+
     const dot = document.querySelector('.cursor-dot') as HTMLElement;
     const ring = document.querySelector('.cursor-ring') as HTMLElement;
 
@@ -34,10 +44,14 @@ export class App implements OnInit {
 
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent): void {
+    if (!this.isBrowser) return;
     this.createClickEffect(event.clientX, event.clientY);
   }
 
   private initCursorEffect(): void {
+    // Check if we're in browser environment
+    if (!this.isBrowser) return;
+
     // Create cursor elements if they don't exist
     if (!document.querySelector('.cursor-dot')) {
       const dot = document.createElement('div');
@@ -53,6 +67,8 @@ export class App implements OnInit {
   }
 
   private createClickEffect(x: number, y: number): void {
+    if (!this.isBrowser) return;
+
     const effect = document.createElement('div');
     effect.style.position = 'fixed';
     effect.style.left = `${x}px`;
@@ -78,7 +94,9 @@ export class App implements OnInit {
 
     // Remove after animation
     setTimeout(() => {
-      effect.remove();
+      if (effect.parentNode) {
+        effect.parentNode.removeChild(effect);
+      }
     }, 600);
   }
 }

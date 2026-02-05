@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -32,29 +33,37 @@ export class Header implements OnInit, OnDestroy {
 
   private timerInterval: any;
   private notificationCheckInterval: any;
+  private isBrowser: boolean;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: any
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   ngOnInit(): void {
-    this.checkScreenSize();
-    this.updateDateTime();
-    this.updateValentineCountdown();
-    this.checkSpecialDates();
-
-    // Update time every second
-    this.timerInterval = setInterval(() => {
+    if (this.isBrowser) {
+      this.checkScreenSize();
       this.updateDateTime();
-    }, 1000);
-
-    // Check notifications every minute
-    this.notificationCheckInterval = setInterval(() => {
       this.updateValentineCountdown();
       this.checkSpecialDates();
-      this.checkNotification();
-    }, 60000);
 
-    // Initial notification check
-    this.checkNotification();
+      // Update time every second
+      this.timerInterval = setInterval(() => {
+        this.updateDateTime();
+      }, 1000);
+
+      // Check notifications every minute
+      this.notificationCheckInterval = setInterval(() => {
+        this.updateValentineCountdown();
+        this.checkSpecialDates();
+        this.checkNotification();
+      }, 60000);
+
+      // Initial notification check
+      this.checkNotification();
+    }
   }
 
   updateDateTime(): void {
@@ -178,7 +187,9 @@ export class Header implements OnInit, OnDestroy {
 
   @HostListener('window:resize')
   checkScreenSize(): void {
-    this.isMobileView = window.innerWidth < 768;
+    if (this.isBrowser) {
+      this.isMobileView = window.innerWidth < 768;
+    }
   }
 
   private formatTime(time: number): string {
@@ -186,11 +197,13 @@ export class Header implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.timerInterval) {
-      clearInterval(this.timerInterval);
-    }
-    if (this.notificationCheckInterval) {
-      clearInterval(this.notificationCheckInterval);
+    if (this.isBrowser) {
+      if (this.timerInterval) {
+        clearInterval(this.timerInterval);
+      }
+      if (this.notificationCheckInterval) {
+        clearInterval(this.notificationCheckInterval);
+      }
     }
   }
 }
