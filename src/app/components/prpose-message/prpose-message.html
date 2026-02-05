@@ -61,14 +61,16 @@
         </span>
       </button>
 
-      <!-- NO Button -->
+      <!-- NO Button - Always dodges -->
       @if (c.noText) {
         <button
+          data-no-button
           type="button"
-          (mouseenter)="moveNoButton()"
-          (touchstart)="handleNoTouch($event)"
+          (mouseenter)="onNoButtonHover()"
+          (mousedown)="onNoButtonAttempt($event)"
+          (touchstart)="onNoButtonTouch($event)"
           [ngStyle]="noButtonStyle"
-          class="group px-4 py-2.5 rounded-lg border border-pink-300 bg-white text-pink-600 font-semibold text-sm sm:text-base shadow-sm hover:shadow-md transition-all duration-200 hover:bg-pink-50 active:scale-[0.98] min-w-fit"
+          class="group px-4 py-2.5 rounded-lg border border-pink-300 bg-white text-pink-600 font-semibold text-sm sm:text-base shadow-sm hover:shadow-md transition-all duration-200 hover:bg-pink-50 active:scale-[0.98] min-w-fit absolute z-10"
         >
           <span class="relative flex items-center gap-1.5 whitespace-nowrap">
             {{ c.noText }}
@@ -79,7 +81,7 @@
     </div>
 
     <!-- Mobile: Buttons stacked -->
-    <div class="sm:hidden space-y-3">
+    <div class="sm:hidden space-y-3 relative min-h-[200px]">
       <!-- YES Button (Mobile) -->
       <button
         type="button"
@@ -92,13 +94,14 @@
         </span>
       </button>
 
-      <!-- NO Button (Mobile) -->
+      <!-- NO Button (Mobile) - Always dodges -->
       @if (c.noText) {
         <button
+          data-no-button
           type="button"
-          (touchstart)="handleNoTouch($event)"
+          (touchstart)="onNoButtonTouch($event)"
           [ngStyle]="noButtonStyle"
-          class="group w-full px-5 py-3 rounded-lg border border-pink-300 bg-white text-pink-600 font-semibold text-base shadow-sm hover:shadow-md transition-all duration-200 hover:bg-pink-50 active:scale-[0.98]"
+          class="group w-full px-5 py-3 rounded-lg border border-pink-300 bg-white text-pink-600 font-semibold text-base shadow-sm hover:shadow-md transition-all duration-200 hover:bg-pink-50 active:scale-[0.98] absolute"
         >
           <span class="relative flex items-center justify-center gap-2">
             {{ c.noText }}
@@ -110,9 +113,11 @@
 
     <!-- Instruction for NO button -->
     @if (c.noText) {
-      <p class="mt-3 text-xs text-pink-400 text-center animate-pulse">
-        Try to catch the "{{ c.noText }}" button! ✨
-      </p>
+      <div class="mt-4 text-center">
+        <p class="text-xs text-pink-400 animate-pulse">
+        {{ c.noText }}
+        </p>
+      </div>
     }
   </div>
 }
