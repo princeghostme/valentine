@@ -9,7 +9,7 @@ export type ValentineDay =
   | 'hug'
   | 'kiss'
   | 'valentine'
-  | '';
+  | 'default';
 
 /* -------------------- Propose -------------------- */
 

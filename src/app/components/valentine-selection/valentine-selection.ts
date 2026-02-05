@@ -15,18 +15,6 @@ export class ValentineSelection {
   valnetineName = signal('');
   yourName = signal('');
   genratedUrl = signal('');
-  selectedDay = signal<ValentineDay>('valentine');
-
-  valentineDays: { value: ValentineDay; label: string }[] = [
-    { value: 'rose', label: '🌹 Rose Day - Feb 7' },
-    { value: 'propose', label: '💌 Propose Day - Feb 8' },
-    { value: 'chocolate', label: '🍫 Chocolate Day - Feb 9' },
-    { value: 'teddy', label: '🧸 Teddy Day - Feb 10' },
-    { value: 'promise', label: '🤞 Promise Day - Feb 11' },
-    { value: 'hug', label: '🤗 Hug Day - Feb 12' },
-    { value: 'kiss', label: '💋 Kiss Day - Feb 13' },
-    { value: 'valentine', label: '❤️ Valentine\'s Day - Feb 14' }
-  ];
 
 
   constructor(
@@ -43,16 +31,10 @@ export class ValentineSelection {
     this.yourName.set(value);
   }
 
-  updateDay(day: string): void {
-  this.selectedDay.set(day as ValentineDay);
-}
-
-
   private async EncryptValentineDetail() {
     const _val:Queryparams = {
       yourName: this.yourName().trim(),
       valnetineName: this.valnetineName().trim(),
-      day: this.selectedDay()
     }
     return this.encryptService.encrypt(JSON.stringify(_val));
   }

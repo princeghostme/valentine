@@ -173,11 +173,7 @@
     },
     "reject": {
       "title": "That’s Alright 🤍",
-      "lines": [
-        "Some moments need time.",
-        "There’s no rush.",
-        "Thank you for your honesty."
-      ]
+      "lines": ["Some moments need time.", "There’s no rush.", "Thank you for your honesty."]
     }
   },
 
@@ -199,10 +195,31 @@
     },
     "reject": {
       "title": "That’s Okay 💫",
+      "lines": ["No pressure at all.", "Some feelings take time.", "I appreciate your honesty."]
+    }
+  },
+  "default": {
+    "propose": {
+      "title": "A Little Patience… 💗",
+      "intro": "This moment isn’t meant to be rushed…",
+      "line1": "Some feelings arrive at just the right time.",
+      "line2": "And this one is still finding its perfect day.",
+      "question": "will you wait with me until then? ⏳",
+      "signature": "saving this moment for the right time 💖",
+      "yesText": "I’ll Wait 🤍",
+      "noText": "I’ll Come Back Later 🌸"
+    },
+    "success": {
+      "title": "Soon… 💫",
+      "line1": "The day isn’t here yet, but the feeling already is.",
+      "line2": "When the time comes, this will feel even more special."
+    },
+    "reject": {
+      "title": "That’s Okay 🌙",
       "lines": [
-        "No pressure at all.",
-        "Some feelings take time.",
-        "I appreciate your honesty."
+        "Some moments are meant to wait.",
+        "Good things arrive at the right time.",
+        "We’ll come back to this when the day feels right."
       ]
     }
   }

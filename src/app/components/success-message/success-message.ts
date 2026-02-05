@@ -22,7 +22,7 @@ export class SuccessMessage {
 
   @Output() reset = new EventEmitter<proposalState>();
 
-  valentineDay = input<ValentineDay>('');
+  valentineDay = input.required<ValentineDay>();
   content$!: Observable<ValentineSuccessContent>;
   constructor(private valentineService: ValentineContentService) {}
 

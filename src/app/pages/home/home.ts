@@ -21,9 +21,37 @@ export class Home implements OnInit {
   public detail = signal<Queryparams>({
     yourName: '',
     valnetineName: '',
-    day: 'valentine'
   });
-  public currentDay = signal<ValentineDay>('');
+  public currentDay = signal<ValentineDay>(this.getCurrentDay());
+
+  private getCurrentDay(): ValentineDay {
+    const today = new Date();
+    const month = today.getMonth() + 1; // 0-indexed
+    const date = today.getDate();
+
+    if (month !== 2) return 'valentine';
+
+    switch (date) {
+      case 7:
+        return 'rose';
+      case 8:
+        return 'propose';
+      case 9:
+        return 'chocolate';
+      case 10:
+        return 'teddy';
+      case 11:
+        return 'promise';
+      case 12:
+        return 'hug';
+      case 13:
+        return 'kiss';
+      case 14:
+        return 'valentine';
+      default:
+        return 'default';
+    }
+  }
 
   public proposalRes = signal<proposalState>(null);
 
@@ -31,15 +59,15 @@ export class Home implements OnInit {
     this.proposalRes.set(res);
   }
 
-  public onstart():void{
-        this.router.queryParams.subscribe(async (params) => {
+  public onstart(): void {
+    this.currentDay.set(this.getCurrentDay());
+    this.router.queryParams.subscribe(async (params) => {
       const name = params['details'];
       const detail = JSON.parse(await this.encryptService.decrypt(name)) ?? null;
       if (!detail) {
         this._router.navigate(['/']);
       }
       this.detail.set(detail);
-      this.currentDay.set(detail.day || '');
     });
   }
 
