@@ -1,12 +1,11 @@
 import { RouterOutlet } from '@angular/router';
-import { Footer } from "./components/footer/footer";
 import { Header } from "./components/header/header";
 import { Component, OnInit, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Footer, Header],
+  imports: [RouterOutlet, Header],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
