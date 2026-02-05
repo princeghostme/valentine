@@ -5,10 +5,8 @@ import {
   OnInit,
   Output,
   input,
-  HostListener,
   ElementRef,
-  ViewChild,
-  AfterViewInit
+  ViewChild
 } from '@angular/core';
 import { AsyncPipe, NgStyle, isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
@@ -29,9 +27,10 @@ import { ValentineContentService } from '../../services/valentine-content-servic
   templateUrl: './prpose-message.html',
   styleUrl: './prpose-message.css',
 })
-export class PrposeMessage implements OnInit, AfterViewInit {
+export class PrposeMessage implements OnInit {
 
-  /* -------------------- Inputs -------------------- */
+  /* ================= INPUTS ================= */
+
   name = input<Queryparams>({
     yourName: '',
     valentineName: '',
@@ -39,13 +38,17 @@ export class PrposeMessage implements OnInit, AfterViewInit {
 
   valentineDay = input.required<ValentineDay>();
 
-  /* -------------------- Output -------------------- */
+  /* ================= OUTPUT ================= */
+
   @Output() response = new EventEmitter<proposalState>();
 
-  /* -------------------- View Refs -------------------- */
-  @ViewChild('actionZone') actionZone?: ElementRef<HTMLElement>;
+  /* ================= VIEW ================= */
 
-  /* -------------------- State -------------------- */
+  @ViewChild('actionZone')
+  actionZone?: ElementRef<HTMLElement>;
+
+  /* ================= STATE ================= */
+
   content$!: Observable<ValentineProposeContent>;
   isMobile = false;
 
@@ -57,82 +60,65 @@ export class PrposeMessage implements OnInit, AfterViewInit {
   } = {
     left: '50%',
     top: '50%',
-    transform: 'translate(-50%, -50%)'
+    transform: 'translate(-50%, -50%)',
+    transition: 'all 0.35s ease-out'
   };
 
-  /* -------------------- Button Dimensions -------------------- */
-  private buttonWidth = 100; // Approximate button width
-  private buttonHeight = 48; // Approximate button height
+  /* ================= INTERNALS ================= */
 
-  /* -------------------- Constructor -------------------- */
+  private lastX = 0;
+  private lastY = 0;
+
+  private readonly buttonWidth = 120;
+  private readonly buttonHeight = 52;
+  private readonly minDistance = 90; // 🔑 prevents near jumps
+
+  /* ================= CONSTRUCTOR ================= */
+
   constructor(
     private valentineService: ValentineContentService,
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private elementRef: ElementRef
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
-  /* -------------------- Lifecycle -------------------- */
+  /* ================= LIFECYCLE ================= */
+
   ngOnInit(): void {
+
     if (isPlatformBrowser(this.platformId)) {
-      this.checkIfMobile();
+      this.isMobile =
+        window.matchMedia('(pointer: coarse)').matches ||
+        window.innerWidth < 768;
     }
 
     this.content$ = this.valentineService.getProposeContent(
       this.valentineDay()
     );
+
+    // Wait until content renders, then center NO button
+    this.content$.subscribe(() => {
+      setTimeout(() => this.centerNoButton(), 0);
+    });
   }
 
-  ngAfterViewInit(): void {
-    // Initial button position
-    setTimeout(() => {
-      if (this.actionZone) {
-        this.centerNoButton();
-      }
-    }, 100);
-  }
+  /* ================= ACTIONS ================= */
 
-  /* -------------------- Actions -------------------- */
   onYes(): void {
     this.response.emit('accepted');
   }
 
-  /* -------------------- No Button Logic -------------------- */
-  private moveCount = 0;
-  private lastX = 0;
-  private lastY = 0;
-
-  onNoButtonAttempt(event: Event): void {
-    event.preventDefault();
-    event.stopPropagation();
-
-    if (this.moveCount === 0) {
-      this.moveCount++;
-      return;
-    }
-
-    this.moveNoButtonFar();
+  onNoHoverOrTouch(): void {
+    this.moveNoButton();
   }
 
-  onNoButtonHover(): void {
-    if (!this.isMobile && this.moveCount > 0) {
-      this.moveNoButtonFar();
-    }
-  }
-
-  onNoButtonTouch(event: TouchEvent): void {
-    if (this.isMobile) {
-      this.onNoButtonAttempt(event);
-    }
-  }
+  /* ================= POSITIONING ================= */
 
   private centerNoButton(): void {
     if (!this.actionZone || !isPlatformBrowser(this.platformId)) return;
 
-    const container = this.actionZone.nativeElement;
-    const containerRect = container.getBoundingClientRect();
+    const rect = this.actionZone.nativeElement.getBoundingClientRect();
 
-    const x = (containerRect.width - this.buttonWidth) / 2;
-    const y = (containerRect.height - this.buttonHeight) / 2;
+    const x = (rect.width - this.buttonWidth) / 2;
+    const y = (rect.height - this.buttonHeight) / 2;
 
     this.lastX = x;
     this.lastY = y;
@@ -141,151 +127,38 @@ export class PrposeMessage implements OnInit, AfterViewInit {
       left: `${x}px`,
       top: `${y}px`,
       transform: 'translate(0, 0)',
-      transition: 'all 0.3s ease-out'
+      transition: 'all 0.35s ease-out'
     };
   }
 
-  moveNoButtonFar(): void {
+  private moveNoButton(): void {
     if (!this.actionZone || !isPlatformBrowser(this.platformId)) return;
 
-    const container = this.actionZone.nativeElement;
-    const containerRect = container.getBoundingClientRect();
+    const rect = this.actionZone.nativeElement.getBoundingClientRect();
 
-    // Calculate available space within the action zone
-    const maxX = containerRect.width - this.buttonWidth;
-    const maxY = containerRect.height - this.buttonHeight;
+    const maxX = rect.width - this.buttonWidth;
+    const maxY = rect.height - this.buttonHeight;
 
-    // Ensure we stay within bounds
-    const minX = 0;
-    const minY = 0;
-
-    // Generate random position far from current position
-    let newX, newY;
+    let x = 0;
+    let y = 0;
+    let distance = 0;
     let attempts = 0;
-    const maxAttempts = 10;
 
     do {
-      newX = Math.random() * maxX;
-      newY = Math.random() * maxY;
+      x = Math.random() * maxX;
+      y = Math.random() * maxY;
+      distance = Math.hypot(x - this.lastX, y - this.lastY);
       attempts++;
+    } while (distance < this.minDistance && attempts < 15);
 
-      // Ensure we're moving a decent distance (at least 50px)
-      const distance = Math.sqrt(
-        Math.pow(newX - this.lastX, 2) + Math.pow(newY - this.lastY, 2)
-      );
-
-      if (distance > 50 || attempts >= maxAttempts) {
-        break;
-      }
-    } while (true);
-
-    // Clamp values to ensure they're within bounds
-    newX = Math.max(minX, Math.min(maxX, newX));
-    newY = Math.max(minY, Math.min(maxY, newY));
-
-    this.lastX = newX;
-    this.lastY = newY;
-
-    // Add fun animations
-    const animations = [
-      { transition: 'all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)' },
-      { transition: 'all 0.5s ease-out' },
-      { transition: 'all 0.3s linear' },
-      { transition: 'all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275)' }
-    ];
-
-    // Add random rotation and bounce effect
-    const rotation = Math.random() > 0.5 ?
-      (5 + Math.random() * 5) :
-      -(5 + Math.random() * 5);
-
-    const scale = 0.95 + (Math.random() * 0.1);
-    const bounce = Math.random() > 0.5 ? 'translateY(-5px)' : 'translateY(5px)';
+    this.lastX = x;
+    this.lastY = y;
 
     this.noButtonStyle = {
-      left: `${newX}px`,
-      top: `${newY}px`,
-      transform: `${bounce} rotate(${rotation}deg) scale(${scale})`,
-      ...animations[Math.floor(Math.random() * animations.length)]
+      left: `${x}px`,
+      top: `${y}px`,
+      transform: 'translate(0, 0)',
+      transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)'
     };
-
-    this.moveCount++;
-
-    // If button hasn't moved much, force a bigger move next time
-    if (attempts >= maxAttempts) {
-      this.lastX = Math.random() * maxX;
-      this.lastY = Math.random() * maxY;
-    }
-  }
-
-  private checkIfMobile(): void {
-    this.isMobile = window.matchMedia('(pointer: coarse)').matches ||
-                    window.innerWidth < 768;
-
-    // Adjust button size for mobile
-    if (this.isMobile) {
-      this.buttonWidth = 120;
-      this.buttonHeight = 52;
-    }
-  }
-
-  @HostListener('document:click', ['$event'])
-  @HostListener('document:touchstart', ['$event'])
-  onDocumentClick(event: Event): void {
-    const noButton = document.querySelector('[data-no-button]') as HTMLElement;
-    if (noButton && this.isClickNearButton(event, noButton)) {
-      event.preventDefault();
-      event.stopPropagation();
-      this.moveNoButtonFar();
-    }
-  }
-
-  private isClickNearButton(event: Event, button: HTMLElement): boolean {
-    if (!(event instanceof MouseEvent || event instanceof TouchEvent)) {
-      return false;
-    }
-
-    const rect = button.getBoundingClientRect();
-    const clickX = event instanceof MouseEvent ? event.clientX : event.touches[0].clientX;
-    const clickY = event instanceof MouseEvent ? event.clientY : event.touches[0].clientY;
-
-    const margin = 40; // Larger margin for easier clicking
-    return (
-      clickX >= rect.left - margin &&
-      clickX <= rect.right + margin &&
-      clickY >= rect.top - margin &&
-      clickY <= rect.bottom + margin
-    );
-  }
-
-  // Listen for window resize to adjust button position
-  @HostListener('window:resize')
-  onResize(): void {
-    if (this.actionZone && isPlatformBrowser(this.platformId)) {
-      setTimeout(() => {
-        // Keep button within bounds on resize
-        const container = this.actionZone!.nativeElement;
-        const containerRect = container.getBoundingClientRect();
-
-        const maxX = containerRect.width - this.buttonWidth;
-        const maxY = containerRect.height - this.buttonHeight;
-
-        // Clamp current position to new bounds
-        const currentX = parseFloat(this.noButtonStyle.left || '0');
-        const currentY = parseFloat(this.noButtonStyle.top || '0');
-
-        const newX = Math.max(0, Math.min(maxX, currentX));
-        const newY = Math.max(0, Math.min(maxY, currentY));
-
-        this.lastX = newX;
-        this.lastY = newY;
-
-        this.noButtonStyle = {
-          ...this.noButtonStyle,
-          left: `${newX}px`,
-          top: `${newY}px`
-        };
-      }, 100);
-    }
   }
 }
