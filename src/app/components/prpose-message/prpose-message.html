@@ -1,54 +1,132 @@
 @if (content$ | async; as c) {
-
-  <!-- Title -->
-  <h2 class="mb-6 text-center text-4xl font-extrabold tracking-tight text-rose-700">
+  <!-- Title Section -->
+  <h2
+    class="
+      mb-4 md:mb-6
+      text-center
+      text-2xl sm:text-3xl md:text-4xl
+      font-bold sm:font-extrabold
+      tracking-tight
+      text-rose-700
+      px-4
+    "
+  >
     {{ c.title }} {{ name().valnetineName }} ❤️
   </h2>
 
-  <!-- Message -->
-  <p class="mb-12 text-center text-lg leading-relaxed text-rose-600">
-    {{ c.intro }}
-    <br />
-    {{ c.line1 }}
-    <br /><br />
-
-    {{ c.line2 }}
-    <br />
-
-    <span class="mt-2 block text-xl font-semibold text-rose-700">
-      {{ c.question }}
-    </span>
-
-    <br /><br />
-
-    <span class="text-sm italic text-rose-500">
-      From {{ name().yourName }}, {{ c.signature }}
-    </span>
-  </p>
-
-  <!-- Action zone -->
+  <!-- Message Section -->
   <div
-    class="relative mx-auto flex h-44 min-w-md items-center justify-center gap-8 overflow-hidden"
+    class="
+      mb-8 md:mb-12
+      px-4 sm:px-6
+      text-center
+    "
   >
-    <!-- YES -->
+    <p
+      class="
+        text-base sm:text-lg
+        leading-relaxed
+        text-rose-600
+        space-y-3 sm:space-y-4
+      "
+    >
+      <span class="block">{{ c.intro }}</span>
+      <span class="block">{{ c.line1 }}</span>
+      <span class="block">{{ c.line2 }}</span>
+
+      <span
+        class="
+          mt-3 sm:mt-4
+          block
+          text-lg sm:text-xl
+          font-semibold
+          text-rose-700
+        "
+      >
+        {{ c.question }}
+      </span>
+
+      <span
+        class="
+          mt-4 sm:mt-6
+          block
+          text-xs sm:text-sm
+          italic
+          text-rose-500
+        "
+      >
+        From {{ name().yourName }}, {{ c.signature }}
+      </span>
+    </p>
+  </div>
+
+  <!-- Action Zone -->
+  <div
+    class="
+      relative
+      mx-auto
+      max-w-screen-sm
+      h-36 sm:h-40 md:h-44
+      flex
+      items-center
+      justify-center
+      gap-4 sm:gap-6 md:gap-8
+      px-4 sm:px-6
+      overflow-hidden
+    "
+  >
+    <!-- YES Button -->
     <button
       type="button"
       (click)="onYes()"
-      class="z-10 rounded-full bg-rose-600 px-10 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-rose-500 hover:shadow-xl active:scale-95"
+      class="
+        z-10
+        rounded-full
+        bg-rose-600
+        px-6 sm:px-8 md:px-10
+        py-2 sm:py-3
+        text-sm sm:text-base md:text-lg
+        font-semibold
+        text-white
+        shadow-lg
+        transition-all
+        duration-300
+        hover:-translate-y-1
+        hover:bg-rose-500
+        hover:shadow-xl
+        active:scale-95
+        w-full max-w-[140px] sm:max-w-[160px]
+      "
     >
       {{ c.yesText }}
     </button>
 
-    <!-- NO (Dodging button) -->
+    <!-- NO Button (Dodging) -->
     <button
       type="button"
       (mouseenter)="!isMobile && moveNoButton()"
       (touchstart)="handleNoTouch($event)"
-      class="absolute rounded-full border border-rose-300 bg-white px-8 py-3 text-lg font-semibold text-rose-600 shadow-md transition-all duration-300 ease-out hover:bg-rose-50"
       [ngStyle]="noButtonStyle"
+      class="
+        absolute
+        rounded-full
+        border
+        border-rose-300
+        bg-white
+        px-4 sm:px-6 md:px-8
+        py-2 sm:py-3
+        text-sm sm:text-base md:text-lg
+        font-semibold
+        text-rose-600
+        shadow-md
+        transition-all
+        duration-300
+        ease-out
+        hover:bg-rose-50
+        w-full max-w-[120px] sm:max-w-[140px]
+      "
     >
       {{ c.noText }}
     </button>
   </div>
-
 }

@@ -23,7 +23,7 @@ export class Home {
     valnetineName: '',
     day: 'valentine'
   });
-  public currentDay = signal<ValentineDay>('rose');
+  public currentDay = signal<ValentineDay>('');
 
   public proposalRes = signal<proposalState>(null);
 

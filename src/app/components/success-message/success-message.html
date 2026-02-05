@@ -1,33 +1,94 @@
 @if (content$ | async; as c) {
-
   <!-- Title -->
-  <h2 class="mb-7 text-center text-4xl font-extrabold tracking-tight text-rose-800">
+  <h2
+    class="
+      mb-5 sm:mb-6 md:mb-7
+      text-center
+      text-2xl sm:text-3xl md:text-4xl
+      font-bold sm:font-extrabold
+      tracking-tight
+      text-rose-800
+      px-4
+    "
+  >
     {{ c.title }} 💖
   </h2>
 
   <!-- Message -->
-  <p class="mb-8 text-center text-lg leading-relaxed text-rose-600">
-    {{ c.line1 }}
-    <br /><br />
-    {{ c.line2 }}
-  </p>
+  <div
+    class="
+      mb-6 sm:mb-7 md:mb-8
+      px-4 sm:px-6
+    "
+  >
+    <p
+      class="
+        text-center
+        text-base sm:text-lg
+        leading-relaxed
+        text-rose-600
+        space-y-3 sm:space-y-4
+      "
+    >
+      <span class="block">{{ c.line1 }}</span>
+      <span class="block">{{ c.line2 }}</span>
+    </p>
+  </div>
 
   <!-- Signature -->
-  <p class="mb-10 text-center text-sm italic text-rose-500">
-    With all my heart,
-    <br />
-    <span class="font-semibold">{{ name().yourName }}</span> 💗
-  </p>
+  <div
+    class="
+      mb-8 sm:mb-9 md:mb-10
+      px-4 sm:px-6
+    "
+  >
+    <p
+      class="
+        text-center
+        text-xs sm:text-sm
+        italic
+        text-rose-500
+        leading-snug sm:leading-normal
+      "
+    >
+      With all my heart,
+      <br />
+      <span class="font-semibold">{{ name().yourName }}</span> 💗
+    </p>
+  </div>
 
   <!-- Action -->
-  <div class="flex justify-center">
+  <div
+    class="
+      flex
+      justify-center
+      px-4 sm:px-6
+    "
+  >
     <button
       type="button"
       (click)="onReset()"
-      class="rounded-full border border-rose-300 bg-white px-12 py-3 text-lg font-semibold text-rose-600 shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-rose-50 hover:shadow-xl active:scale-95"
+      class="
+        rounded-full
+        border
+        border-rose-300
+        bg-white
+        px-6 sm:px-8 md:px-10 lg:px-12
+        py-2.5 sm:py-3
+        text-sm sm:text-base md:text-lg
+        font-semibold
+        text-rose-600
+        shadow-md
+        transition-all
+        duration-300
+        hover:-translate-y-1
+        hover:bg-rose-50
+        hover:shadow-xl
+        active:scale-95
+        w-full max-w-[280px] sm:max-w-[320px]
+      "
     >
       Relive This Moment 💕
     </button>
   </div>
-
 }

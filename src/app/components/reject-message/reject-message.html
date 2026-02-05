@@ -1,29 +1,91 @@
 @if (content$ | async; as c) {
-
   <!-- Title -->
-  <h2 class="mb-5 text-center text-3xl font-extrabold tracking-tight text-rose-800 wobble">
+  <h2
+    class="
+      mb-4 sm:mb-5
+      text-center
+      text-2xl sm:text-3xl
+      font-bold sm:font-extrabold
+      tracking-tight
+      text-rose-800
+      wobble
+      px-4
+    "
+  >
     {{ c.title }}
   </h2>
 
   <!-- Message -->
-  <p class="mb-5 text-center text-lg leading-relaxed text-rose-600">
-    {{ c.lines[currentRejectIndex] }}
-  </p>
+  <div
+    class="
+      mb-4 sm:mb-5
+      px-4 sm:px-6
+    "
+  >
+    <p
+      class="
+        text-center
+        text-base sm:text-lg
+        leading-relaxed sm:leading-loose
+        text-rose-600
+        min-h-[60px] sm:min-h-[80px]
+        flex items-center justify-center
+      "
+    >
+      {{ c.lines[currentRejectIndex] }}
+    </p>
+  </div>
 
   <!-- Reassurance -->
-  <p class="mb-8 text-center text-sm italic text-rose-500">
-    No pressure at all. Thank you for being honest 💫
-  </p>
+  <div
+    class="
+      mb-6 sm:mb-8
+      px-4 sm:px-6
+    "
+  >
+    <p
+      class="
+        text-center
+        text-xs sm:text-sm
+        italic
+        text-rose-500
+        leading-snug sm:leading-normal
+      "
+    >
+      No pressure at all. Thank you for being honest 💫
+    </p>
+  </div>
 
   <!-- Action -->
-  <div class="flex justify-center">
+  <div
+    class="
+      flex
+      justify-center
+      px-4 sm:px-6
+    "
+  >
     <button
       type="button"
       (click)="onReset()"
-      class="rounded-full bg-rose-600 px-10 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-rose-500 hover:shadow-xl active:scale-95"
+      class="
+        rounded-full
+        bg-rose-600
+        px-6 sm:px-8 md:px-10
+        py-2.5 sm:py-3
+        text-sm sm:text-base md:text-lg
+        font-semibold
+        text-white
+        shadow-lg
+        transition-all
+        duration-300
+        hover:-translate-y-1
+        hover:bg-rose-500
+        hover:shadow-xl
+        active:scale-95
+        w-full max-w-[280px] sm:max-w-[320px]
+      "
     >
       Maybe… let me try again 💌
     </button>
   </div>
-
 }
