@@ -1,0 +1,42 @@
+<div class="mx-auto mt-10 max-w-md rounded-2xl bg-pink-50 p-6 shadow-lg">
+  <h2 class="mb-4 text-center text-2xl font-bold text-pink-700">Who is your Valentine? 💖</h2>
+
+  <input
+    type="text"
+    placeholder="Enter name"
+    [value]="name()"
+    (input)="updateName($any($event.target).value)"
+    class="mb-4 w-full rounded-xl border border-pink-300 px-4 py-2 text-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-400"
+  />
+  <div class="flex justify-center gap-4">
+    <button
+      type="button"
+      (click)="submit()"
+      [disabled]="!name().trim()"
+      class="rounded-xl bg-pink-600 p-2 font-semibold text-white transition hover:bg-pink-500 disabled:opacity-50"
+    >
+      Continue 💕
+    </button>
+
+    <button
+      type="button"
+      (click)="genrateUrl()"
+      [disabled]="!name().trim()"
+      class="rounded-xl bg-pink-600 p-2 font-semibold text-white transition hover:bg-pink-500 disabled:opacity-50"
+    >
+      Create URL
+    </button>
+  </div>
+  @if (genratedUrl().trim().length > 0) {
+    <div class="mt-4 break-words text-center text-pink-700">
+      <p>Your Valentine URL:</p>
+      <a
+        [href]="genratedUrl()"
+        class="text-pink-600 underline"
+        target="_blank"
+        rel="noopener noreferrer"
+        >{{ genratedUrl() }}</a
+      >
+    </div>
+  }
+</div>

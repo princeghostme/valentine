@@ -1,0 +1,15 @@
+<div
+  class="mx-auto mt-10 w-2xl rounded-2xl bg-gradient-to-br from-pink-50 to-rose-100 p-6 shadow-xl transition-transform duration-300 hover:scale-[1.02]"
+>
+  @switch (proposalRes()) {
+    @case ('accepted') {
+      <app-success-message (reset)="setResponse($event)" [name]="name()"></app-success-message>
+    }
+    @case ('rejected') {
+      <app-reject-message (reset)="setResponse($event)" [name]="name()"></app-reject-message>
+    }
+    @default {
+      <app-prpose-message (response)="setResponse($event)" [name]="name()"></app-prpose-message>
+    }
+  }
+</div>
