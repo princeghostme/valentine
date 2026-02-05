@@ -1,42 +1,73 @@
-<div class="mx-auto mt-10 max-w-md rounded-2xl bg-rose-50 p-6 shadow-lg">
-  <h2 class="mb-4 text-center text-2xl font-bold text-rose-700">Who is your Valentine? 💖</h2>
+<!-- <section
+  class="mx-auto mt-16 max-w-md rounded-3xl bg-gradient-to-br from-rose-50 to-pink-100 p-8 shadow-2xl"
+> -->
+<!-- Title -->
+<h2 class="mb-2 text-center text-3xl font-extrabold text-rose-700 tracking-tight">
+  Who is your Valentine? 💖
+</h2>
 
+<p class="mb-6 text-center text-sm text-rose-600">
+  Enter a name and create a sweet little surprise ✨
+</p>
+
+<!-- Input -->
+<div class="relative mb-6">
   <input
     type="text"
-    placeholder="Enter name"
+    placeholder="Type their name here…"
     [value]="name()"
     (input)="updateName($any($event.target).value)"
-    class="mb-4 w-full rounded-xl border border-rose-300 px-4 py-2 text-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-400"
+    class="w-full rounded-2xl border border-rose-300 bg-white px-5 py-3 text-lg text-rose-700 placeholder-rose-400 shadow-sm transition focus:outline-none focus:ring-2 focus:ring-rose-400"
   />
-  <div class="flex justify-center gap-4">
-    <button
-      type="button"
-      (click)="submit()"
-      [disabled]="!name().trim()"
-      class="rounded-xl bg-rose-600 p-2 font-semibold text-white transition hover:bg-rose-500 disabled:opacity-50"
-    >
-      Continue 💕
-    </button>
-
-    <button
-      type="button"
-      (click)="genrateUrl()"
-      [disabled]="!name().trim()"
-      class="rounded-xl bg-rose-600 p-2 font-semibold text-white transition hover:bg-rose-500 disabled:opacity-50"
-    >
-      Create URL
-    </button>
-  </div>
-  @if (genratedUrl().trim().length > 0) {
-    <div class="mt-4 break-words text-center text-rose-700">
-      <p>Your Valentine URL:</p>
-      <a
-        [href]="genratedUrl()"
-        class="text-rose-600 underline"
-        target="_blank"
-        rel="noopener noreferrer"
-        >{{ genratedUrl() }}</a
-      >
-    </div>
-  }
+  <span class="pointer-events-none absolute right-4 top-3 text-xl"> 💕 </span>
 </div>
+
+<!-- Actions -->
+<div class="flex justify-center gap-4">
+  <button
+    type="button"
+    (click)="submit()"
+    [disabled]="!name().trim()"
+    class="rounded-2xl bg-rose-600 px-6 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-rose-500 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
+  >
+    Continue 💘
+  </button>
+
+  <button
+    type="button"
+    (click)="genrateUrl()"
+    [disabled]="!name().trim()"
+    class="rounded-2xl border border-rose-300 bg-white px-6 py-3 text-lg font-semibold text-rose-600 shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-rose-50 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
+  >
+    Create URL 🔗
+  </button>
+</div>
+
+<!-- Generated URL -->
+@if (genratedUrl().trim().length > 0) {
+  <div class="mt-8 rounded-2xl bg-white/70 p-4 text-center shadow-inner">
+    <p class="mb-2 text-sm text-rose-600">Your Valentine link 💌</p>
+
+    <!-- URL -->
+    <a
+      [href]="genratedUrl()"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="max-w-[220px] break-all text-lg font-semibold text-rose-700 underline decoration-rose-400 underline-offset-4 transition hover:text-rose-500"
+    >
+      {{ genratedUrl() }}
+    </a>
+
+    <!-- Copy button -->
+    <div class="flex items-center justify-center mt-3">
+      <button
+        type="button"
+        (click)="copyUrl()"
+        [disabled]="copied"
+        class="rounded-xl bg-rose-600 px-3 py-2 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-rose-500 hover:shadow-lg active:scale-95 disabled:bg-red-200"
+      >
+        {{ copied ? 'Copied 💖' : 'Copy 📋' }}
+      </button>
+    </div>
+  </div>
+}

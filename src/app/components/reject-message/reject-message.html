@@ -1,30 +1,38 @@
-<h2 class="mb-4 text-3xl font-extrabold text-rose-800 tracking-tight">
-  That’s Okay 💫
-</h2>
 
-<p class="mb-3 text-lg font-medium text-rose-700">
-  Thanks for being honest, {{ name() }} 🌸
-</p>
 
-<p class="mb-4 text-rose-600 leading-relaxed">
-  I truly appreciate you taking a moment to read this.
-  Sometimes timing and feelings don’t align — and that’s completely okay.
-</p>
-
-<p class="text-sm text-rose-500">
-  Wishing you warmth, happiness, and beautiful moments ahead.
-</p>
-
-<div class="mt-6 flex justify-center gap-2 text-3xl">
-  🌷 🤍 🌈
-</div>
-
-<div class="mt-5 flex justify-center">
-  <button
-    type="button"
-    (click)="onReset()"
-    class="relative rounded-2xl border border-rose-300 bg-white px-8 py-3 text-lg font-semibold text-rose-600 shadow-md transition-all duration-200 hover:bg-rose-50 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-rose-300"
+  <!-- Title with tiny wobble -->
+  <h2
+    class="mb-4 text-3xl font-extrabold text-rose-800 tracking-tight wobble"
   >
-    Try Again 💌
-  </button>
-</div>
+    That’s Okay… or is it? 🥺
+  </h2>
+
+  <p class="mb-3 text-lg font-medium text-rose-700">
+    Thanks for being honest, {{ name() }} 🌸
+  </p>
+
+  <!-- Dynamic copy line -->
+  <p class="mb-4 text-rose-600 leading-relaxed transition-all duration-300">
+    {{ dynamicLine }}
+  </p>
+
+  <p class="text-sm text-rose-500">
+    No pressure at all. Just checking one last time 💫
+  </p>
+
+  <!-- CTA -->
+  <div class="mt-8 flex justify-center">
+    <button
+      type="button"
+      (click)="onReset()"
+      (mouseenter)="cancelAutoReset()"
+      class="pulse rounded-2xl bg-rose-600 px-8 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-rose-500 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-rose-400 active:scale-95"
+    >
+      Maybe… let me see again 💌
+    </button>
+  </div>
+
+  <!-- Auto return hint -->
+  <p class="mt-4 text-xs text-rose-400">
+    Returning automatically in {{ countdown }} seconds…
+  </p>

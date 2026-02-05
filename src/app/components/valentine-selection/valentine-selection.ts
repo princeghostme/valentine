@@ -9,21 +9,23 @@ import { Encrypt } from '../../services/encrypt';
   styleUrl: './valentine-selection.css',
 })
 export class ValentineSelection {
- // Signal to store input value
+  // Signal to store input value
   name = signal('');
   genratedUrl = signal('');
 
-  constructor(private router: Router, @Inject(DOCUMENT) private document: Document, private encryptService: Encrypt) {
-
-  }
+  constructor(
+    private router: Router,
+    @Inject(DOCUMENT) private document: Document,
+    private encryptService: Encrypt,
+  ) {}
 
   updateName(value: string): void {
     this.name.set(value);
   }
 
-  private async Encryptname(){
+  private async Encryptname() {
     const value = this.name().trim();
-    return await this.encryptService.encrypt(value);
+    return this.encryptService.encrypt(value);
   }
 
   async submit(): Promise<void> {
@@ -33,8 +35,8 @@ export class ValentineSelection {
 
     this.router.navigate(['/valentinesmagic'], {
       queryParams: {
-        name: value
-      }
+        name: value,
+      },
     });
   }
 
@@ -42,6 +44,18 @@ export class ValentineSelection {
     const value = await this.Encryptname();
     const baseUrl = this.document.location.origin;
     this.genratedUrl.set(`${baseUrl}/valentinesmagic?name=${value}`);
+    this.copied = false;
     return this.genratedUrl();
+  }
+
+  copied = false;
+
+  copyUrl(): void {
+    const url = this.genratedUrl();
+    if (!url) return;
+
+    navigator.clipboard.writeText(url).then(() => {
+      this.copied = true;
+    });
   }
 }

@@ -14,7 +14,7 @@ export type proposalState = 'initial' | 'accepted' | 'rejected' | null;
   styleUrl: './home.css',
 })
 export class Home {
-  public name = signal<string>('Riya');
+  public name = signal<string>('');
 
   public proposalRes = signal<proposalState>(null);
 

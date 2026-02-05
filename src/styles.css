@@ -2,3 +2,97 @@
 
 @import "tailwindcss";
 
+/* ---------- Base Reset ---------- */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ---------- App Canvas ---------- */
+.app-root {
+  position: relative;
+  min-height: 100vh;
+  background: radial-gradient(
+      1200px 600px at top center,
+      rgba(251, 113, 133, 0.35),
+      transparent 60%
+    ),
+    linear-gradient(
+      to bottom,
+      #fda4af,
+      #fecdd3 40%,
+      #fff1f2
+    );
+  overflow-x: hidden;
+}
+
+/* ---------- Soft Ambient Glow ---------- */
+.bg-glow {
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(244, 63, 94, 0.35), transparent 45%),
+    radial-gradient(circle at 80% 30%, rgba(236, 72, 153, 0.25), transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(251, 113, 133, 0.3), transparent 55%);
+  filter: blur(80px);
+  opacity: 0.85;
+}
+
+/* ---------- Smooth Text Rendering ---------- */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- Selection (tiny luxury detail) ---------- */
+::selection {
+  background: rgba(244, 63, 94, 0.25);
+}
+
+
+.floating {
+  position: absolute;
+  animation: float 6s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+.delay-1 {
+  animation-delay: 1.5s;
+}
+
+.delay-2 {
+  animation-delay: 3s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-12px) scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+}
+/* Gentle heartbeat — luxury pace */
+.heartbeat {
+  animation: heartbeat 2.8s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}

@@ -1,0 +1,30 @@
+/* 😌 Slow pulse for CTA */
+.pulse {
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* 🥺 Tiny wobble on heading */
+.wobble {
+  animation: wobble 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes wobble {
+  0% {
+    transform: rotate(-0.5deg);
+  }
+  100% {
+    transform: rotate(0.5deg);
+  }
+}

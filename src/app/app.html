@@ -1,7 +1,17 @@
 <main class="app-main d-flex h-screen max-w-screen justify-items-center content-center">
   <app-header></app-header>
-  <section class="content-card">
-    <router-outlet></router-outlet>
+  <section
+    class="relative mx-auto mt-16 w-11/12 sm:w-2xl rounded-3xl p-8 text-center shadow-2xl bg-white/50 backdrop-blur-sm"
+  >
+    <!-- Floating hearts background -->
+    <div class="pointer-events-none absolute inset-0 opacity-20">
+      <span class="floating left-8 top-6 text-3xl">💗</span>
+      <span class="floating delay-1 right-10 top-16 text-4xl">💖</span>
+      <span class="floating delay-2 left-1/2 bottom-10 text-3xl">💘</span>
+    </div>
+    <section class="content-card">
+      <router-outlet></router-outlet>
+    </section>
   </section>
   <app-footer></app-footer>
 </main>

@@ -1,18 +1,37 @@
-<nav class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl">
-  <div class="bg-white/90 backdrop-blur-md shadow-lg rounded-2xl px-6">
-    <div class="flex justify-between items-center h-16">
+<nav
+  class="fixed top-5 left-1/2 z-50 w-[92%] max-w-6xl -translate-x-1/2 "
+>
+  <div
+    class="relative rounded-3xl bg-white/80 backdrop-blur-lg shadow-xl ring-1 ring-rose-100 "
+  >
+    <!-- Soft glow -->
+    <div
+      class="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-r from-rose-100/40 via-pink-100/40 to-rose-100/40"
+    ></div>
+
+    <div class="relative flex h-16 items-center justify-between px-6 ">
 
       <!-- Logo -->
-      <h1 class="text-2xl font-bold text-gray-900">
-        Valentine
-      </h1>
+      <div class="flex items-center gap-2">
+        <span class="text-2xl">💖</span>
+        <h1
+          class="text-2xl font-extrabold tracking-tight text-rose-700"
+        >
+          Valentine
+        </h1>
+      </div>
 
-      <!-- CTA Button -->
+      <!-- CTA -->
       <a
         href="/valentine"
-        class="bg-rose-500 hover:bg-rose-600 text-white font-semibold py-2 px-6 rounded-lg transition duration-200"
+        class="group inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-500 px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-rose-400"
       >
-        Get Started
+        <span>Get Started</span>
+        <span
+          class="transition-transform duration-200 group-hover:translate-x-1"
+        >
+          💘
+        </span>
       </a>
 
     </div>

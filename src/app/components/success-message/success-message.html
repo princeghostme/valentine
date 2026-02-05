@@ -1,23 +1,37 @@
-<h2 class="mb-4 text-3xl font-extrabold text-rose-800 tracking-tight">It’s a Date! 💖</h2>
 
-<p class="mb-3 text-lg font-medium text-rose-700">You just made my day, {{ name() }} 🌸</p>
+  <!-- Title -->
+  <h2
+    class="mb-4 text-4xl font-extrabold text-rose-800 tracking-tight"
+  >
+    It’s a Date! 💖
+  </h2>
 
-<p class="mb-4 text-rose-600 leading-relaxed">
-  I’ve been smiling since you said yes. This means more to me than you know.
-</p>
+  <!-- Personal line -->
+  <p class="mb-3 text-lg font-medium text-rose-700">
+    You just made my day, <span class="font-semibold">{{ name() }}</span> 🌸
+  </p>
 
-<p class="text-sm text-rose-500">
-  Looking forward to a lovely time together — good conversations, laughs, and memories we’ll
-  cherish.
-</p>
+  <!-- Emotional message -->
+  <p class="mb-4 text-rose-600 leading-relaxed">
+    I’ve been smiling since you said yes.<br />
+    This little moment means more to me than you know.
+  </p>
 
-<div class="mt-6 flex justify-center gap-2 text-3xl">🎉 💕 🥰 💐</div>
-<div class="flex justify-center mt-5">
+  <p class="text-sm text-rose-500">
+    Here’s to good conversations, shared laughs,
+    and memories we’ll look back on with warmth.
+  </p>
+
+ <!-- Action buttons -->
+<div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+
+  <!-- Replay -->
   <button
     type="button"
     (click)="onReset()"
-    class="relative rounded-2xl border border-rose-300 bg-white px-8 py-3 text-lg font-semibold text-rose-600 shadow-md transition-all duration-200 hover:bg-rose-50 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-rose-300"
+    class="rounded-2xl border border-rose-300 bg-white px-8 py-3 text-lg font-semibold text-rose-600 shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-rose-50 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-rose-300 active:scale-95"
   >
-    Retry 💌
+    Relive the Moment
   </button>
+
 </div>
