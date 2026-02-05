@@ -6,7 +6,7 @@ import { ValentineDay, ValentineProposeContent, ValentineSuccessContent, Valenti
 
 @Injectable({ providedIn: 'root' })
 export class ValentineContentService {
-  private readonly url = 'assets/valentine/valentine-content.json';
+  private readonly url = '/valentine/valentine-content.json';
 
   constructor(private http: HttpClient) {}
 
