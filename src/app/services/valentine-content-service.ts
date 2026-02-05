@@ -1,36 +1,39 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
-import { ValentineDay, ValentineProposeContent, ValentineSuccessContent, ValentineRejectContent } from '../interfaces/valentine-day';
+import { Observable, of } from 'rxjs';
 
+import {
+  ValentineDay,
+  ValentineProposeContent,
+  ValentineSuccessContent,
+  ValentineRejectContent,
+  ValentineContentMap
+} from '../interfaces/valentine-day';
+
+import content from '../../../public/assets/valentine/valentine-content.json';
 
 @Injectable({ providedIn: 'root' })
 export class ValentineContentService {
-  private readonly url = '/valentine/valentine-content.json';
 
-  constructor(private http: HttpClient) {}
+  // Typed, in-memory content
+  private readonly data = content as ValentineContentMap;
+
+  constructor() {}
 
   getProposeContent(
     day: ValentineDay
   ): Observable<ValentineProposeContent> {
-    return this.http
-      .get<any>(this.url)
-      .pipe(map(data => data[day].propose));
+    return of(this.data[day].propose);
   }
 
   getSuccessContent(
     day: ValentineDay
   ): Observable<ValentineSuccessContent> {
-    return this.http
-      .get<any>(this.url)
-      .pipe(map(data => data[day].success));
+    return of(this.data[day].success);
   }
 
   getRejectContent(
     day: ValentineDay
   ): Observable<ValentineRejectContent> {
-    return this.http
-      .get<any>(this.url)
-      .pipe(map(data => data[day].reject));
+    return of(this.data[day].reject);
   }
 }

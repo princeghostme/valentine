@@ -1,3 +1,5 @@
+/* -------------------- Days -------------------- */
+
 export type ValentineDay =
   | 'rose'
   | 'propose'
@@ -8,18 +10,21 @@ export type ValentineDay =
   | 'kiss'
   | 'valentine'
   | '';
-export type ValentineState = 'propose' | 'success' | 'reject';
+
+/* -------------------- Propose -------------------- */
 
 export interface ValentineProposeContent {
-  title: string; // "Hey ❤️"
-  intro: string; // "I’ve been wanting to say this..."
-  line1: string; // Main emotional line
-  line2: string; // Follow-up line
-  question: string; // "will you be my Valentine?"
-  signature: string; // "with all my heart 💖"
-  yesText: string; // Yes button text
-  noText: string; // No button text
+  title: string;
+  intro: string;
+  line1: string;
+  line2: string;
+  question: string;
+  signature: string;
+  yesText: string;
+  noText: string;
 }
+
+/* -------------------- Success -------------------- */
 
 export interface ValentineSuccessContent {
   title: string;
@@ -27,7 +32,24 @@ export interface ValentineSuccessContent {
   line2: string;
 }
 
+/* -------------------- Reject -------------------- */
+
 export interface ValentineRejectContent {
   title: string;
   lines: string[];
 }
+
+/* -------------------- Per-Day Content -------------------- */
+
+export interface ValentineDayContent {
+  propose: ValentineProposeContent;
+  success: ValentineSuccessContent;
+  reject: ValentineRejectContent;
+}
+
+/* -------------------- FULL JSON MAP -------------------- */
+
+export type ValentineContentMap = Record<
+  ValentineDay,
+  ValentineDayContent
+>;
