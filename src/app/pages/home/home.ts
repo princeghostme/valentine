@@ -2,19 +2,23 @@ import { Component,signal } from '@angular/core';
 import { PrposeMessage } from "../../components/prpose-message/prpose-message";
 import { SuccessMessage } from '../../components/success-message/success-message';
 import { RejectMessage } from '../../components/reject-message/reject-message';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Encrypt } from '../../services/encrypt';
+import { Queryparams } from '../../interfaces/queryparams';
 
 export type proposalState = 'initial' | 'accepted' | 'rejected' | null;
 
 @Component({
   selector: 'app-home',
-  imports: [PrposeMessage, SuccessMessage, RejectMessage],
+  imports: [SuccessMessage, RejectMessage, PrposeMessage],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home {
-  public name = signal<string>('');
+  public detail = signal<Queryparams>({
+    yourName: '',
+    valnetineName: '',
+  });
 
   public proposalRes = signal<proposalState>(null);
 
@@ -22,10 +26,14 @@ export class Home {
     this.proposalRes.set(res);
   }
 
-  constructor(private router: ActivatedRoute, private encryptService: Encrypt) {
+  constructor(private router: ActivatedRoute, private _router:Router , private encryptService: Encrypt) {
     this.router.queryParams.subscribe(async(params) => {
-      const name = params['name'];
-      this.name.set(await this.encryptService.decrypt(name));
+      const name = params['details'];
+      const detail = JSON.parse(await this.encryptService.decrypt(name)) ?? null;
+      if(!detail){
+        this._router.navigate(['/']);
+      }
+      this.detail.set(detail);
   })
 }
 

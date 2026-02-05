@@ -1,6 +1,7 @@
 import { Component, EventEmitter, input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { proposalState } from '../../pages/home/home';
+import { Queryparams } from '../../interfaces/queryparams';
 
 @Component({
   selector: 'app-success-message',
@@ -10,7 +11,10 @@ import { proposalState } from '../../pages/home/home';
 })
 export class SuccessMessage {
 
-  name = input<string>('');
+    name = input<Queryparams>({
+    yourName: '',
+    valnetineName: '',
+  });
 
   @Output() reset = new EventEmitter<proposalState>();
 

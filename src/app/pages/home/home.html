@@ -1,12 +1,12 @@
 
   @switch (proposalRes()) {
     @case ('accepted') {
-      <app-success-message (reset)="setResponse($event)" [name]="name()"></app-success-message>
+      <app-success-message (reset)="setResponse($event)" [name]="detail()"></app-success-message>
     }
     @case ('rejected') {
-      <app-reject-message (reset)="setResponse($event)" [name]="name()"></app-reject-message>
+      <app-reject-message (reset)="setResponse($event)" [name]="detail()"></app-reject-message>
     }
     @default {
-      <app-prpose-message (response)="setResponse($event)" [name]="name()"></app-prpose-message>
+      <app-prpose-message (response)="setResponse($event)" [name]="detail()"></app-prpose-message>
     }
   }

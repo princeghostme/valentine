@@ -1,27 +1,44 @@
 <!-- Title -->
-<h2 class="mb-4 text-center text-4xl font-extrabold text-rose-700 tracking-tight">
-  Hey {{ name() }} ❤️
+<h2
+  class="mb-6 text-center text-4xl font-extrabold tracking-tight text-rose-700"
+>
+  Hey {{ name().valnetineName }} ❤️
 </h2>
 
 <!-- Message -->
-<p class="mb-10 text-center text-lg leading-relaxed text-rose-600">
-  I’ve been meaning to tell you this for a while.<br />
-  You genuinely make everything feel lighter when you’re around.
-  <br /><br />
-  So I thought I’d just ask —
+<p class="mb-12 text-center text-lg leading-relaxed text-rose-600">
+  I’ve been wanting to say this for a while now…
   <br />
-  <span class="font-semibold text-rose-700 text-xl"> will you be my Valentine? </span>
+  Somehow, everything feels a little brighter
+  when you’re around. ✨
+  <br /><br />
+
+  So instead of overthinking it,
+  I’ll just ask from the heart —
+  <br />
+
+  <span class="mt-2 block text-xl font-semibold text-rose-700">
+    will you be my Valentine? 💕
+  </span>
+
+  <br /><br />
+
+  <span class="text-sm italic text-rose-500">
+    From {{ name().yourName }}, with all my heart 💖
+  </span>
 </p>
 
 <!-- Action zone -->
-<div class="relative mx-auto flex h-40 max-w-md items-center justify-center gap-6 overflow-hidden">
+<div
+  class="relative mx-auto flex h-44 max-w-md items-center justify-center gap-8 overflow-hidden"
+>
   <!-- YES -->
   <button
     type="button"
     (click)="onYes()"
-    class="z-10 rounded-2xl bg-rose-600 px-8 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:bg-rose-500 hover:shadow-xl active:scale-95"
+    class="z-10 rounded-full bg-rose-600 px-10 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-rose-500 hover:shadow-xl active:scale-95"
   >
-    Yes 💕
+    Yes 💞
   </button>
 
   <!-- NO (Dodging button) -->
@@ -30,7 +47,7 @@
     (mouseenter)="!isMobile && moveNoButton()"
     (touchstart)="handleNoTouch($event)"
     aria-label="Say No"
-    class="absolute rounded-2xl border border-rose-300 bg-white px-8 py-3 text-lg font-semibold text-rose-600 shadow-md transition-all duration-300 ease-out hover:bg-rose-50"
+    class="absolute rounded-full border border-rose-300 bg-white px-8 py-3 text-lg font-semibold text-rose-600 shadow-md transition-all duration-300 ease-out hover:bg-rose-50"
     [ngStyle]="noButtonStyle"
   >
     No 💔

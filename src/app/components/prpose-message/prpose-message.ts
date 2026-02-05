@@ -1,6 +1,7 @@
 import { Component, EventEmitter, input, OnInit, Output } from '@angular/core';
 import { NgStyle } from '@angular/common';
 import { proposalState } from '../../pages/home/home';
+import { Queryparams } from '../../interfaces/queryparams';
 
 @Component({
   selector: 'app-prpose-message',
@@ -10,7 +11,10 @@ import { proposalState } from '../../pages/home/home';
   styleUrl: './prpose-message.css',
 })
 export class PrposeMessage implements OnInit {
-  name = input<string>('');
+  name = input<Queryparams>({
+    yourName: '',
+    valnetineName: '',
+  });
 
   @Output() response = new EventEmitter<proposalState>();
 

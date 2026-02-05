@@ -1,5 +1,6 @@
 import { Component, EventEmitter, input, Output, OnInit, OnDestroy } from '@angular/core';
 import { proposalState } from '../../pages/home/home';
+import { Queryparams } from '../../interfaces/queryparams';
 
 @Component({
   selector: 'app-reject-message',
@@ -8,8 +9,10 @@ import { proposalState } from '../../pages/home/home';
   styleUrl: './reject-message.css',
 })
 export class RejectMessage implements OnInit, OnDestroy {
-
-  name = input<string>('');
+  name = input<Queryparams>({
+    yourName: '',
+    valnetineName: '',
+  });
 
   @Output() reset = new EventEmitter<proposalState>();
 
