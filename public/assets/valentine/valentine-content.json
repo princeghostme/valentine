@@ -6,9 +6,7 @@
       "line1": "Some feelings are too gentle for words, yet too true to remain unspoken.",
       "line2": "Just as a pink holds beauty in its silence, so does my heart hold love for you.",
       "question": "Will you accept this pink, and let our story bloom together? 💕",
-      "signature": "Forever yours, with all my love 💖",
-      "yesText": "I Accept with Love 🌹",
-      "noText": "With Kindness, Not Now 🌸"
+      "signature": "Forever yours, with all my love 💖"
     },
     "success": {
       "title": "You Chose My Heart 🌹",
@@ -32,9 +30,7 @@
       "line1": "You are the peace my thoughts return to, the calm in my every storm.",
       "line2": "With reverence and truth, I offer you my forever —",
       "question": "Will you walk with me, not just today, but through all our tomorrows? 💍",
-      "signature": "Yours, completely and truly 💖",
-      "yesText": "Yes, For All Time 💍",
-      "noText": "I Honor Your Heart with Time 🤍"
+      "signature": "Yours, completely and truly 💖"
     },
     "success": {
       "title": "My Soul Is Home 💖",
@@ -58,9 +54,7 @@
       "line1": "You sweeten my world simply by being in it.",
       "line2": "May this chocolate carry the warmth I feel whenever you're near —",
       "question": "Will you be my Valentine, and share life’s sweetness with me? 💕",
-      "signature": "Sweetly and sincerely yours 💖",
-      "yesText": "Share the Sweetness 🍫",
-      "noText": "With Gratitude, Another Time 🤍"
+      "signature": "Sweetly and sincerely yours 💖"
     },
     "success": {
       "title": "My Heart Is Full 💕",
@@ -84,9 +78,7 @@
       "line1": "Your presence makes the world feel softer, safer, more like home.",
       "line2": "This teddy carries the comfort I wish to always offer you —",
       "question": "Will you be my Valentine, and let me cherish you always? 🤍",
-      "signature": "Holding you close in my heart 💖",
-      "yesText": "I Accept Your Warmth 🧸",
-      "noText": "With Tenderness, Not Now 🤍"
+      "signature": "Holding you close in my heart 💖"
     },
     "success": {
       "title": "My Heart Is Held 🧸",
@@ -110,9 +102,7 @@
       "line1": "What I feel for you is built on honesty, care, and unwavering respect.",
       "line2": "I offer you this promise, not as a demand, but as a faithful hope —",
       "question": "Will you be my Valentine, and let me love you truly? 💫",
-      "signature": "Faithfully and devotedly yours 💖",
-      "yesText": "I Trust Your Promise 🤞",
-      "noText": "I Must Be True to My Heart 🤍"
+      "signature": "Faithfully and devotedly yours 💖"
     },
     "success": {
       "title": "Our Promise Begins 💫",
@@ -136,9 +126,7 @@
       "line1": "Your presence feels like a safe harbor, a place of quiet belonging.",
       "line2": "With an open heart and gentle hands, I ask —",
       "question": "Will you be my Valentine, and share this closeness with me? 🤍",
-      "signature": "With all my warmth 💖",
-      "yesText": "I Step into Your Embrace 🤗",
-      "noText": "I Need My Own Space Now 🤍"
+      "signature": "With all my warmth 💖"
     },
     "success": {
       "title": "Hearts Entwined 🤗",
@@ -162,9 +150,7 @@
       "line1": "What I feel for you is a language spoken in glances, in closeness, in trust.",
       "line2": "May I share this tender truth with you?",
       "question": "Will you be my Valentine, and let our hearts speak softly? 💞",
-      "signature": "With quiet, devoted affection 💖",
-      "yesText": "I Seal This Promise 💋",
-      "noText": "With Care, I Pause 🤍"
+      "signature": "With quiet, devoted affection 💖"
     },
     "success": {
       "title": "A Moment Made Eternal 💞",
@@ -188,9 +174,7 @@
       "line1": "You are the warmth that colors my world, the reason my soul feels lighter.",
       "line2": "So with courage, hope, and complete honesty, I ask —",
       "question": "Will you be my Valentine, and write our story together? 💕",
-      "signature": "With all my love and sincerity 💖",
-      "yesText": "Yes, With All My Heart 💞",
-      "noText": "My Heart Says Not Now 💔"
+      "signature": "With all my love and sincerity 💖"
     },
     "success": {
       "title": "Our Story Begins 💖",
@@ -213,8 +197,7 @@
       "line1": "What I feel for you is growing, deep-rooted and true, awaiting its perfect season.",
       "line2": "It is a promise whispered to the future, a seed planted with hope.",
       "question": "Will you trust in this journey with me, and let love find its own time? ⏳",
-      "signature": "Faithfully waiting for our moment 💖",
-      "yesText": "I Trust in Our Time 🤍"
+      "signature": "Faithfully waiting for our moment 💖"
     },
     "success": {
       "title": "Our Time Will Come 💫",

@@ -20,8 +20,6 @@ export interface ValentineProposeContent {
   line2: string;
   question: string;
   signature: string;
-  yesText: string;
-  noText?: string;
 }
 
 /* -------------------- Success -------------------- */
