@@ -2,216 +2,224 @@
   "rose": {
     "propose": {
       "title": "A Rose for You 🌹",
-      "intro": "I’ve been meaning to share this with you…",
-      "line1": "Some feelings are too gentle for words, and too honest to hide.",
-      "line2": "So I offer you this rose, carrying everything I feel quietly inside.",
-      "question": "will you accept this rose from my heart? 💕",
-      "signature": "with all my heart 💖",
-      "yesText": "Accept the Rose 🌹",
-      "noText": "Maybe Later 🌸"
+      "intro": "There’s something I’ve been holding in my heart…",
+      "line1": "Some feelings are too gentle for words, yet too true to remain unspoken.",
+      "line2": "Just as a rose holds beauty in its silence, so does my heart hold love for you.",
+      "question": "Will you accept this rose, and let our story bloom together? 💕",
+      "signature": "Forever yours, with all my love 💖",
+      "yesText": "I Accept with Love 🌹",
+      "noText": "With Kindness, Not Now 🌸"
     },
     "success": {
-      "title": "You Accepted My Rose 🌹",
-      "line1": "That simple yes meant more to me than you know.",
-      "line2": "It feels like the beginning of something soft and beautiful."
+      "title": "You Chose My Heart 🌹",
+      "line1": "That ‘yes’ was the softest echo my soul has ever heard.",
+      "line2": "With you, every moment feels like petals unfolding in sunlight."
     },
     "reject": {
-      "title": "That’s Okay 🌸",
+      "title": "Your Truth Is Sacred 🌸",
       "lines": [
-        "Some feelings bloom in their own time, and that’s perfectly okay.",
-        "No pressure, no rush — honesty matters most.",
-        "Even this moment means something to me."
+        "I will hold this rose gently, until its time is right.",
+        "Your honesty is a gift I will always cherish.",
+        "Even in waiting, my heart remains sincere."
       ]
     }
   },
 
   "propose": {
     "propose": {
-      "title": "From My Heart 💌",
-      "intro": "I’ve held this question softly for a while now…",
-      "line1": "You’ve become someone my thoughts return to, effortlessly.",
-      "line2": "So instead of overthinking it, I’ll ask honestly —",
-      "question": "will you be mine, today and always? 💍",
-      "signature": "with all my sincerity 💖",
-      "yesText": "Say Yes 💍",
-      "noText": "I Need Time 🤍"
+      "title": "My Heart's Quiet Plea 💌",
+      "intro": "I’ve carried this question like a sacred whisper…",
+      "line1": "You are the peace my thoughts return to, the calm in my every storm.",
+      "line2": "With reverence and truth, I offer you my forever —",
+      "question": "Will you walk with me, not just today, but through all our tomorrows? 💍",
+      "signature": "Yours, completely and truly 💖",
+      "yesText": "Yes, For All Time 💍",
+      "noText": "I Honor Your Heart with Time 🤍"
     },
     "success": {
-      "title": "You Said Yes 💖",
-      "line1": "You didn’t just answer a question.",
-      "line2": "You made my heart feel calm, safe, and at home."
+      "title": "My Soul Is Home 💖",
+      "line1": "You didn’t just say yes… you became my always.",
+      "line2": "In your eyes, I’ve found the place my heart was always meant to rest."
     },
     "reject": {
-      "title": "I Understand 🤍",
+      "title": "I Hear Your Heart 🤍",
       "lines": [
-        "Some answers need time, and I respect that.",
-        "Thank you for being honest with me.",
-        "This moment still matters to me."
+        "I will hold this love with patience, as a gardener tends a seed.",
+        "Your truth is a sacred trust between us.",
+        "This moment, too, is woven into my devotion."
       ]
     }
   },
 
   "chocolate": {
     "propose": {
-      "title": "Something Sweet 🍫",
-      "intro": "I was thinking about you today…",
-      "line1": "Life feels a little sweeter when you’re around.",
-      "line2": "So I thought I’d share something sweet from the heart —",
-      "question": "will you be my Valentine? 💕",
-      "signature": "with sweetness and warmth 💖",
-      "yesText": "Taste the Sweetness 🍫",
-      "noText": "Not Today 🤍"
+      "title": "A Taste of My Affection 🍫",
+      "intro": "Today, like every day, my thoughts turned to you…",
+      "line1": "You sweeten my world simply by being in it.",
+      "line2": "May this chocolate carry the warmth I feel whenever you're near —",
+      "question": "Will you be my Valentine, and share life’s sweetness with me? 💕",
+      "signature": "Sweetly and sincerely yours 💖",
+      "yesText": "Share the Sweetness 🍫",
+      "noText": "With Gratitude, Another Time 🤍"
     },
     "success": {
-      "title": "So Sweet 💕",
-      "line1": "Just like chocolate, this moment feels comforting.",
-      "line2": "I’ll remember this smile for a long time."
+      "title": "My Heart Is Full 💕",
+      "line1": "This ‘yes’ is the most comforting sweetness I’ve ever known.",
+      "line2": "I will treasure the memory of your smile like a promise kept."
     },
     "reject": {
-      "title": "That’s Alright 🤎",
+      "title": "Your Honesty Is a Gift 🤎",
       "lines": [
-        "Not everything has to be decided today.",
-        "Some sweetness comes with time.",
-        "Thank you for being kind and honest."
+        "Some chapters are written gently, in their own time.",
+        "I will hold this sweetness for a day yet to come.",
+        "Thank you for trusting me with your truth."
       ]
     }
   },
 
   "teddy": {
     "propose": {
-      "title": "A Warm Hug 🧸",
-      "intro": "This might sound simple, but it means a lot…",
-      "line1": "Some people just make the world feel softer.",
-      "line2": "And I wanted you to know how comforting you feel to me.",
-      "question": "will you be my Valentine? 🤍",
-      "signature": "wrapped in warmth 💖",
-      "yesText": "Take the Hug 🧸",
-      "noText": "Maybe 🤍"
+      "title": "A Hug from My Soul 🧸",
+      "intro": "This may seem simple, but it comes from a place deep within…",
+      "line1": "Your presence makes the world feel softer, safer, more like home.",
+      "line2": "This teddy carries the comfort I wish to always offer you —",
+      "question": "Will you be my Valentine, and let me cherish you always? 🤍",
+      "signature": "Holding you close in my heart 💖",
+      "yesText": "I Accept Your Warmth 🧸",
+      "noText": "With Tenderness, Not Now 🤍"
     },
     "success": {
-      "title": "That Felt Warm 🧸",
-      "line1": "This little yes feels like a hug I didn’t know I needed.",
-      "line2": "Thank you for making this moment special."
+      "title": "My Heart Is Held 🧸",
+      "line1": "Your acceptance feels like a safe embrace I’ve been waiting for my whole life.",
+      "line2": "Thank you for allowing me to cherish you."
     },
     "reject": {
-      "title": "That’s Okay 🤍",
+      "title": "I Understand with Love 🤍",
       "lines": [
-        "Some comforts arrive slowly.",
-        "There’s no rush at all.",
-        "I’m glad we shared this moment."
+        "True comfort is given without conditions.",
+        "I will wait with a patient and open heart.",
+        "This moment of sincerity is a treasure to me."
       ]
     }
   },
 
   "promise": {
     "propose": {
-      "title": "A Quiet Promise 🤞",
-      "intro": "No big words, no dramatic vows…",
-      "line1": "Just honesty, care, and intention.",
-      "line2": "I wanted to share something real with you —",
-      "question": "will you be my Valentine? 💫",
-      "signature": "with honesty and respect 💖",
-      "yesText": "I Promise Too 🤞",
-      "noText": "I’m Not Ready 🤍"
+      "title": "A Vow from My Heart 🤞",
+      "intro": "Not with grand words, but with quiet certainty…",
+      "line1": "What I feel for you is built on honesty, care, and unwavering respect.",
+      "line2": "I offer you this promise, not as a demand, but as a faithful hope —",
+      "question": "Will you be my Valentine, and let me love you truly? 💫",
+      "signature": "Faithfully and devotedly yours 💖",
+      "yesText": "I Trust Your Promise 🤞",
+      "noText": "I Must Be True to My Heart 🤍"
     },
     "success": {
-      "title": "A Promise Shared 💫",
-      "line1": "This feels calm, genuine, and meaningful.",
-      "line2": "Something I’ll always respect."
+      "title": "Our Promise Begins 💫",
+      "line1": "This ‘yes’ is the foundation of something real and beautiful.",
+      "line2": "I will honor this trust with every breath I take."
     },
     "reject": {
-      "title": "I Respect That 🤍",
+      "title": "I Honor Your Truth 🤍",
       "lines": [
-        "Honesty matters more than anything.",
-        "Thank you for being true to yourself.",
-        "This moment was still meaningful."
+        "Your integrity is a light I will always respect.",
+        "This promise remains, patient and unchanged.",
+        "Thank you for this moment of pure honesty."
       ]
     }
   },
 
   "hug": {
     "propose": {
-      "title": "Come Closer 🤗",
-      "intro": "Some days don’t need perfect words…",
-      "line1": "They just need warmth and closeness.",
-      "line2": "So I thought I’d ask gently —",
-      "question": "will you be my Valentine? 🤍",
-      "signature": "with warmth 💖",
-      "yesText": "Hold Me 🤗",
-      "noText": "Not Now 🤍"
+      "title": "An Invitation to My Heart 🤗",
+      "intro": "Sometimes, the soul speaks in warmth, not words…",
+      "line1": "Your presence feels like a safe harbor, a place of quiet belonging.",
+      "line2": "With an open heart and gentle hands, I ask —",
+      "question": "Will you be my Valentine, and share this closeness with me? 🤍",
+      "signature": "With all my warmth 💖",
+      "yesText": "I Step into Your Embrace 🤗",
+      "noText": "I Need My Own Space Now 🤍"
     },
     "success": {
-      "title": "That Felt Nice 🤗",
-      "line1": "This moment feels calm and comforting.",
-      "line2": "I’m grateful for this closeness."
+      "title": "Hearts Entwined 🤗",
+      "line1": "This closeness is a sanctuary I’ve found only in you.",
+      "line2": "I am profoundly grateful for your trust and your ‘yes’."
     },
     "reject": {
-      "title": "That’s Okay 🤍",
+      "title": "Your Space Is Sacred 🤍",
       "lines": [
-        "Everyone needs space sometimes.",
-        "There’s no pressure at all.",
-        "Thank you for being honest."
+        "I hold space for you, always, with respect and care.",
+        "My heart remains open, without pressure or rush.",
+        "Your honesty is a gift I receive with grace."
       ]
     }
   },
 
   "kiss": {
     "propose": {
-      "title": "Just One Moment 💋",
-      "intro": "This might sound simple, but it’s sincere…",
-      "line1": "Some feelings are felt more than spoken.",
-      "line2": "So I’ll ask softly —",
-      "question": "will you be my Valentine? 💞",
-      "signature": "with quiet affection 💖",
-      "yesText": "Seal It 💋",
-      "noText": "Maybe 🤍"
+      "title": "A Pledge of Tenderness 💋",
+      "intro": "This feeling is quiet, deep, and utterly sincere…",
+      "line1": "What I feel for you is a language spoken in glances, in closeness, in trust.",
+      "line2": "May I share this tender truth with you?",
+      "question": "Will you be my Valentine, and let our hearts speak softly? 💞",
+      "signature": "With quiet, devoted affection 💖",
+      "yesText": "I Seal This Promise 💋",
+      "noText": "With Care, I Pause 🤍"
     },
     "success": {
-      "title": "That Was Sweet 💞",
-      "line1": "A soft moment, shared honestly.",
-      "line2": "Something I’ll remember warmly."
+      "title": "A Moment Made Eternal 💞",
+      "line1": "This kiss is a silent vow, a beginning written on my soul.",
+      "line2": "I will cherish the trust you’ve placed in me, always."
     },
     "reject": {
-      "title": "That’s Alright 🤍",
-      "lines": ["Some moments need time.", "There’s no rush.", "Thank you for your honesty."]
+      "title": "I Cherish Your Care 🤍",
+      "lines": [
+        "Tenderness waits for the right moment, and I will wait with it.",
+        "Your ‘not yet’ is held with as much care as a ‘yes’ would be.",
+        "Thank you for your gentle honesty."
+      ]
     }
   },
 
   "valentine": {
     "propose": {
-      "title": "Hey ❤️",
-      "intro": "I’ve been wanting to say this for a while now…",
-      "line1": "Somehow, everything feels a little brighter when you’re around.",
-      "line2": "So instead of overthinking it, I’ll just ask from the heart —",
-      "question": "will you be my Valentine? 💕",
-      "signature": "with all my heart 💖",
-      "yesText": "Yes 💞",
-      "noText": "No 💔"
+      "title": "My Heart's Question ❤️",
+      "intro": "This has been the quiet song of my heart for so long…",
+      "line1": "You are the warmth that colors my world, the reason my soul feels lighter.",
+      "line2": "So with courage, hope, and complete honesty, I ask —",
+      "question": "Will you be my Valentine, and write our story together? 💕",
+      "signature": "With all my love and sincerity 💖",
+      "yesText": "Yes, With All My Heart 💞",
+      "noText": "My Heart Says Not Now 💔"
     },
     "success": {
-      "title": "It’s a Date 💖",
-      "line1": "You didn’t just say yes — you changed something in me.",
-      "line2": "You made my heart feel exactly where it belongs."
+      "title": "Our Story Begins 💖",
+      "line1": "Your ‘yes’ didn’t just answer me—it realigned my entire universe.",
+      "line2": "In you, I’ve found my home, my peace, my forever."
     },
     "reject": {
-      "title": "That’s Okay 💫",
-      "lines": ["No pressure at all.", "Some feelings take time.", "I appreciate your honesty."]
+      "title": "Your Heart Is Honored 💫",
+      "lines": [
+        "I receive your truth with an open and respectful heart.",
+        "My care for you is not bound by a single day.",
+        "This moment of courage between us is sacred to me."
+      ]
     }
   },
   "default": {
     "propose": {
-      "title": "A Little Patience… 💗",
-      "intro": "This moment isn’t meant to be rushed…",
-      "line1": "Some feelings arrive at just the right time.",
-      "line2": "And this one is still finding its perfect day.",
-      "question": "will you wait with me until then? ⏳",
-      "signature": "saving this moment for the right time 💖",
-      "yesText": "I’ll Wait 🤍"
+      "title": "A Love Patiently Held 💗",
+      "intro": "Some feelings are too precious to be rushed…",
+      "line1": "What I feel for you is growing, deep-rooted and true, awaiting its perfect season.",
+      "line2": "It is a promise whispered to the future, a seed planted with hope.",
+      "question": "Will you trust in this journey with me, and let love find its own time? ⏳",
+      "signature": "Faithfully waiting for our moment 💖",
+      "yesText": "I Trust in Our Time 🤍"
     },
     "success": {
-      "title": "Soon… 💫",
-      "line1": "The day isn’t here yet, but the feeling already is.",
-      "line2": "When the time comes, this will feel even more special."
+      "title": "Our Time Will Come 💫",
+      "line1": "This patience is not empty—it is filled with the certainty of you.",
+      "line2": "When our moment arrives, it will be all the sweeter for the waiting."
     }
   }
 }
