@@ -1,40 +1,29 @@
+@if (content$ | async; as c) {
 
-
-  <!-- Title with tiny wobble -->
-  <h2
-    class="mb-4 text-3xl font-extrabold text-rose-800 tracking-tight wobble"
-  >
-    That’s Okay… or is it? 🥺
+  <!-- Title -->
+  <h2 class="mb-5 text-center text-3xl font-extrabold tracking-tight text-rose-800 wobble">
+    {{ c.title }}
   </h2>
 
-  <p class="mb-3 text-lg font-medium text-rose-700">
-    Thanks for being honest, {{ name().valnetineName }} 🌸
+  <!-- Message -->
+  <p class="mb-5 text-center text-lg leading-relaxed text-rose-600">
+    {{ c.lines[currentRejectIndex] }}
   </p>
 
-  <!-- Dynamic copy line -->
-  <p class="mb-4 text-rose-600 leading-relaxed transition-all duration-300">
-    {{ dynamicLine }}
+  <!-- Reassurance -->
+  <p class="mb-8 text-center text-sm italic text-rose-500">
+    No pressure at all. Thank you for being honest 💫
   </p>
 
-  <p class="text-sm text-rose-500">
-    No pressure at all. Just checking one last time 💫
-  </p>
-
-  From {{ name().yourName }} with all my heart 💖
-
-  <!-- CTA -->
-  <div class="mt-8 flex justify-center">
+  <!-- Action -->
+  <div class="flex justify-center">
     <button
       type="button"
       (click)="onReset()"
-      (mouseenter)="cancelAutoReset()"
-      class="pulse rounded-2xl bg-rose-600 px-8 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-rose-500 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-rose-400 active:scale-95"
+      class="rounded-full bg-rose-600 px-10 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-rose-500 hover:shadow-xl active:scale-95"
     >
-      Maybe… let me see again 💌
+      Maybe… let me try again 💌
     </button>
   </div>
 
-  <!-- Auto return hint -->
-  <p class="mt-4 text-xs text-rose-400">
-    Returning automatically in {{ countdown }} seconds…
-  </p>
+}

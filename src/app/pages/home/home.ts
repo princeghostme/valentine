@@ -1,24 +1,29 @@
-import { Component,signal } from '@angular/core';
-import { PrposeMessage } from "../../components/prpose-message/prpose-message";
+import { Component, signal } from '@angular/core';
+import { PrposeMessage } from '../../components/prpose-message/prpose-message';
 import { SuccessMessage } from '../../components/success-message/success-message';
 import { RejectMessage } from '../../components/reject-message/reject-message';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Encrypt } from '../../services/encrypt';
 import { Queryparams } from '../../interfaces/queryparams';
+import { ValentineContentService } from '../../services/valentine-content-service';
+import { ValentineDay, ValentineProposeContent } from '../../interfaces/valentine-day';
 
 export type proposalState = 'initial' | 'accepted' | 'rejected' | null;
 
 @Component({
+  standalone: true,
   selector: 'app-home',
-  imports: [SuccessMessage, RejectMessage, PrposeMessage],
   templateUrl: './home.html',
   styleUrl: './home.css',
+  imports: [SuccessMessage, RejectMessage, PrposeMessage],
 })
 export class Home {
   public detail = signal<Queryparams>({
     yourName: '',
     valnetineName: '',
+    day: 'valentine'
   });
+  public currentDay = signal<ValentineDay>('rose');
 
   public proposalRes = signal<proposalState>(null);
 
@@ -26,15 +31,21 @@ export class Home {
     this.proposalRes.set(res);
   }
 
-  constructor(private router: ActivatedRoute, private _router:Router , private encryptService: Encrypt) {
-    this.router.queryParams.subscribe(async(params) => {
+  constructor(
+    private router: ActivatedRoute,
+    private _router: Router,
+    private encryptService: Encrypt,
+  ) {
+    this.router.queryParams.subscribe(async (params) => {
       const name = params['details'];
       const detail = JSON.parse(await this.encryptService.decrypt(name)) ?? null;
-      if(!detail){
+      if (!detail) {
         this._router.navigate(['/']);
       }
       this.detail.set(detail);
-  })
-}
+      this.currentDay.set(detail.day || '');
 
+      console.log(this.currentDay());
+    });
+  }
 }

@@ -1,28 +1,49 @@
-import { Component, EventEmitter, input, OnInit, Output } from '@angular/core';
-import { NgStyle } from '@angular/common';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  OnInit,
+  Output,
+  input
+} from '@angular/core';
+import { AsyncPipe, NgStyle, isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { proposalState } from '../../pages/home/home';
 import { Queryparams } from '../../interfaces/queryparams';
+import {
+  ValentineDay,
+  ValentineProposeContent
+} from '../../interfaces/valentine-day';
+import { ValentineContentService } from '../../services/valentine-content-service';
 
 @Component({
   selector: 'app-prpose-message',
   standalone: true,
-  imports: [NgStyle],
+  imports: [NgStyle, AsyncPipe],
   templateUrl: './prpose-message.html',
   styleUrl: './prpose-message.css',
 })
 export class PrposeMessage implements OnInit {
+
+  /* -------------------- Inputs -------------------- */
+
   name = input<Queryparams>({
     yourName: '',
     valnetineName: '',
   });
 
+  valentineDay = input.required<ValentineDay>();
+
+  /* -------------------- Output -------------------- */
+
   @Output() response = new EventEmitter<proposalState>();
 
-  isMobile = false;
+  /* -------------------- State -------------------- */
 
-  ngOnInit(): void {
-    this.isMobile = window?.matchMedia('(pointer: coarse)').matches;
-  }
+  content$!: Observable<ValentineProposeContent>;
+  isMobile = false;
 
   noButtonStyle: {
     left?: string;
@@ -32,6 +53,29 @@ export class PrposeMessage implements OnInit {
     top: '50%',
   };
 
+  /* -------------------- Constructor -------------------- */
+
+  constructor(
+    private valentineService: ValentineContentService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
+
+  /* -------------------- Lifecycle -------------------- */
+
+  ngOnInit(): void {
+    // ✅ SSR-safe browser check
+    if (isPlatformBrowser(this.platformId)) {
+      this.isMobile = window.matchMedia('(pointer: coarse)').matches;
+    }
+
+    // ✅ Inputs are ready here
+    this.content$ = this.valentineService.getProposeContent(
+      this.valentineDay()
+    );
+  }
+
+  /* -------------------- Actions -------------------- */
+
   onYes(): void {
     this.response.emit('accepted');
   }
@@ -40,28 +84,26 @@ export class PrposeMessage implements OnInit {
     this.response.emit('rejected');
   }
 
+  /* -------------------- No Button Logic -------------------- */
+
   private noTouchedOnce = false;
+  private lastX = 0;
+  private lastY = 0;
 
   handleNoTouch(event: TouchEvent): void {
     if (!this.isMobile) return;
 
-    // 🚫 Prevent the tap
     event.preventDefault();
     event.stopPropagation();
 
-    // First touch → escape immediately
     if (!this.noTouchedOnce) {
       this.noTouchedOnce = true;
       this.moveNoButton();
       return;
     }
 
-    // Optional: even second touch escapes again
     this.moveNoButton();
   }
-
-  private lastX = 0;
-  private lastY = 0;
 
   moveNoButton(): void {
     const containerWidth = 320;
@@ -70,7 +112,7 @@ export class PrposeMessage implements OnInit {
     const buttonWidth = 90;
     const buttonHeight = 44;
 
-    const minDistance = 80; // 👈 minimum jump distance (KEY)
+    const minDistance = 80;
 
     const maxX = containerWidth - buttonWidth;
     const maxY = containerHeight - buttonHeight;
@@ -79,11 +121,9 @@ export class PrposeMessage implements OnInit {
     let y = 0;
     let distance = 0;
 
-    // 🔁 Keep trying until we get a far-enough position
     do {
       x = Math.random() * maxX;
       y = Math.random() * maxY;
-
       distance = Math.hypot(x - this.lastX, y - this.lastY);
     } while (distance < minDistance);
 

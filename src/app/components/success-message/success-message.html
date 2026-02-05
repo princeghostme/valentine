@@ -1,53 +1,33 @@
-<!-- Title -->
-<h2
-  class="mb-7 text-center text-4xl font-extrabold tracking-tight text-rose-800"
->
-  It’s a Date 💞
-</h2>
+@if (content$ | async; as c) {
 
-<!-- Personal line -->
-<p class="mb-5 text-center text-lg font-medium text-rose-700">
-  You didn’t just say yes…
-  <br />
-  You made my heart feel at home,
-  <span class="font-semibold text-rose-800">
-    {{ name().valnetineName }}
-  </span> 🌷
-</p>
+  <!-- Title -->
+  <h2 class="mb-7 text-center text-4xl font-extrabold tracking-tight text-rose-800">
+    {{ c.title }} 💖
+  </h2>
 
-<!-- Emotional message -->
-<p class="mb-7 text-center leading-relaxed text-rose-600">
-  From that moment on,<br />
-  I’ve been carrying a soft, quiet happiness with me.
-  <br /><br />
-  That single “yes” means more to me
-  than words could ever hold.
-</p>
+  <!-- Message -->
+  <p class="mb-8 text-center text-lg leading-relaxed text-rose-600">
+    {{ c.line1 }}
+    <br /><br />
+    {{ c.line2 }}
+  </p>
 
-<!-- Closing note -->
-<p class="mb-7 text-center text-sm italic text-rose-500">
-  Here’s to slow moments, deep conversations,
-  <br />
-  shared laughter, and memories that gently stay.
-</p>
+  <!-- Signature -->
+  <p class="mb-10 text-center text-sm italic text-rose-500">
+    With all my heart,
+    <br />
+    <span class="font-semibold">{{ name().yourName }}</span> 💗
+  </p>
 
-<!-- Signature -->
-<p class="mb-12 text-center text-sm font-medium text-rose-700">
-  With all my heart,
-  <br />
-  <span class="font-semibold">
-    {{ name().yourName }}
-  </span>
-  💖
-</p>
+  <!-- Action -->
+  <div class="flex justify-center">
+    <button
+      type="button"
+      (click)="onReset()"
+      class="rounded-full border border-rose-300 bg-white px-12 py-3 text-lg font-semibold text-rose-600 shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-rose-50 hover:shadow-xl active:scale-95"
+    >
+      Relive This Moment 💕
+    </button>
+  </div>
 
-<!-- Action button -->
-<div class="flex justify-center">
-  <button
-    type="button"
-    (click)="onReset()"
-    class="rounded-full border border-rose-300 bg-white px-12 py-3 text-lg font-semibold text-rose-600 shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-rose-50 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-rose-300 active:scale-95"
-  >
-    Relive This Moment 💗
-  </button>
-</div>
+}

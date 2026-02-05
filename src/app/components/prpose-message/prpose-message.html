@@ -1,55 +1,54 @@
-<!-- Title -->
-<h2
-  class="mb-6 text-center text-4xl font-extrabold tracking-tight text-rose-700"
->
-  Hey {{ name().valnetineName }} ❤️
-</h2>
+@if (content$ | async; as c) {
 
-<!-- Message -->
-<p class="mb-12 text-center text-lg leading-relaxed text-rose-600">
-  I’ve been wanting to say this for a while now…
-  <br />
-  Somehow, everything feels a little brighter
-  when you’re around. ✨
-  <br /><br />
+  <!-- Title -->
+  <h2 class="mb-6 text-center text-4xl font-extrabold tracking-tight text-rose-700">
+    {{ c.title }} {{ name().valnetineName }} ❤️
+  </h2>
 
-  So instead of overthinking it,
-  I’ll just ask from the heart —
-  <br />
+  <!-- Message -->
+  <p class="mb-12 text-center text-lg leading-relaxed text-rose-600">
+    {{ c.intro }}
+    <br />
+    {{ c.line1 }}
+    <br /><br />
 
-  <span class="mt-2 block text-xl font-semibold text-rose-700">
-    will you be my Valentine? 💕
-  </span>
+    {{ c.line2 }}
+    <br />
 
-  <br /><br />
+    <span class="mt-2 block text-xl font-semibold text-rose-700">
+      {{ c.question }}
+    </span>
 
-  <span class="text-sm italic text-rose-500">
-    From {{ name().yourName }}, with all my heart 💖
-  </span>
-</p>
+    <br /><br />
 
-<!-- Action zone -->
-<div
-  class="relative mx-auto flex h-44 max-w-md items-center justify-center gap-8 overflow-hidden"
->
-  <!-- YES -->
-  <button
-    type="button"
-    (click)="onYes()"
-    class="z-10 rounded-full bg-rose-600 px-10 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-rose-500 hover:shadow-xl active:scale-95"
+    <span class="text-sm italic text-rose-500">
+      From {{ name().yourName }}, {{ c.signature }}
+    </span>
+  </p>
+
+  <!-- Action zone -->
+  <div
+    class="relative mx-auto flex h-44 min-w-md items-center justify-center gap-8 overflow-hidden"
   >
-    Yes 💞
-  </button>
+    <!-- YES -->
+    <button
+      type="button"
+      (click)="onYes()"
+      class="z-10 rounded-full bg-rose-600 px-10 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-rose-500 hover:shadow-xl active:scale-95"
+    >
+      {{ c.yesText }}
+    </button>
 
-  <!-- NO (Dodging button) -->
-  <button
-    type="button"
-    (mouseenter)="!isMobile && moveNoButton()"
-    (touchstart)="handleNoTouch($event)"
-    aria-label="Say No"
-    class="absolute rounded-full border border-rose-300 bg-white px-8 py-3 text-lg font-semibold text-rose-600 shadow-md transition-all duration-300 ease-out hover:bg-rose-50"
-    [ngStyle]="noButtonStyle"
-  >
-    No 💔
-  </button>
-</div>
+    <!-- NO (Dodging button) -->
+    <button
+      type="button"
+      (mouseenter)="!isMobile && moveNoButton()"
+      (touchstart)="handleNoTouch($event)"
+      class="absolute rounded-full border border-rose-300 bg-white px-8 py-3 text-lg font-semibold text-rose-600 shadow-md transition-all duration-300 ease-out hover:bg-rose-50"
+      [ngStyle]="noButtonStyle"
+    >
+      {{ c.noText }}
+    </button>
+  </div>
+
+}
