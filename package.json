@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:valentine": "node dist/valentine/server/server.mjs"
+    "serve:ssr:valentine": "node dist/valentine/server/server.mjs",
+    "deploy": "ng build --configuration production --base-href /valentine/ && npx gh-pages -d dist/valentine/browser"
   },
   "prettier": {
     "printWidth": 100,

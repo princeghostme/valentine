@@ -1,5 +1,6 @@
 import { Component, DOCUMENT, Inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { Encrypt } from '../../services/encrypt';
 
 @Component({
   selector: 'app-valentine-selection',
@@ -12,20 +13,21 @@ export class ValentineSelection {
   name = signal('');
   genratedUrl = signal('');
 
-  constructor(private router: Router, @Inject(DOCUMENT) private document: Document) {
+  constructor(private router: Router, @Inject(DOCUMENT) private document: Document, private encryptService: Encrypt) {
 
   }
 
   updateName(value: string): void {
     this.name.set(value);
   }
-  private Encryptname(){
+
+  private async Encryptname(){
     const value = this.name().trim();
-    return atob(value);
+    return await this.encryptService.encrypt(value);
   }
 
-  submit(): void {
-    const value = this.Encryptname();
+  async submit(): Promise<void> {
+    const value = await this.Encryptname();
 
     if (!value) return;
 
@@ -36,8 +38,8 @@ export class ValentineSelection {
     });
   }
 
-  genrateUrl(): string {
-    const value = this.Encryptname();
+  async genrateUrl(): Promise<string> {
+    const value = await this.Encryptname();
     const baseUrl = this.document.location.origin;
     this.genratedUrl.set(`${baseUrl}/valentinesmagic?name=${value}`);
     return this.genratedUrl();

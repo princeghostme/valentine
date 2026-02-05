@@ -3,6 +3,7 @@ import { PrposeMessage } from "../../components/prpose-message/prpose-message";
 import { SuccessMessage } from '../../components/success-message/success-message';
 import { RejectMessage } from '../../components/reject-message/reject-message';
 import { ActivatedRoute } from '@angular/router';
+import { Encrypt } from '../../services/encrypt';
 
 export type proposalState = 'initial' | 'accepted' | 'rejected' | null;
 
@@ -21,10 +22,10 @@ export class Home {
     this.proposalRes.set(res);
   }
 
-  constructor(private router: ActivatedRoute) {
-    this.router.queryParams.subscribe(params => {
+  constructor(private router: ActivatedRoute, private encryptService: Encrypt) {
+    this.router.queryParams.subscribe(async(params) => {
       const name = params['name'];
-      this.name.set(btoa(name));
+      this.name.set(await this.encryptService.decrypt(name));
   })
 }
 

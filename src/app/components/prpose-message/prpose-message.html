@@ -1,19 +1,19 @@
 <h2
   id="propose-title"
-  class="mb-4 text-center text-3xl font-extrabold text-pink-700 tracking-tight"
+  class="mb-4 text-center text-3xl font-extrabold text-rose-700 tracking-tight"
 >
   Hey {{ name() }} ❤️
 </h2>
 
 <p
   id="propose-message"
-  class="mb-6 text-center text-lg leading-relaxed text-pink-600"
+  class="mb-6 text-center text-lg leading-relaxed text-rose-600"
 >
   I’ve been meaning to tell you this for a while.<br />
   You genuinely make things feel lighter and happier whenever you’re around.
   <br /><br />
   So I thought I’d just ask —<br />
-  <span class="font-semibold text-pink-700">
+  <span class="font-semibold text-rose-700">
     will you be my Valentine?
   </span>
   <br />
@@ -25,7 +25,7 @@
     type="button"
     (click)="onYes()"
     aria-label="Say Yes"
-    class="rounded-2xl bg-pink-600 px-8 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:bg-pink-500 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-pink-400 active:scale-95"
+    class="rounded-2xl bg-rose-600 px-8 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:bg-rose-500 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-rose-400 active:scale-95"
   >
     Yes 💕
   </button>
@@ -36,7 +36,7 @@
     (mouseenter)="moveNoButton()"
     (click)="onNo()"
     aria-label="Say No"
-    class="relative rounded-2xl border border-pink-300 bg-white px-8 py-3 text-lg font-semibold text-pink-600 shadow-md transition-all duration-200 hover:bg-pink-50 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-300"
+    class="relative rounded-2xl border border-rose-300 bg-white px-8 py-3 text-lg font-semibold text-rose-600 shadow-md transition-all duration-200 hover:bg-rose-50 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-rose-300"
     [ngStyle]="noButtonStyle"
   >
     No 💔
