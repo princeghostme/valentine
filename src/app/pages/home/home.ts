@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { PrposeMessage } from '../../components/prpose-message/prpose-message';
 import { SuccessMessage } from '../../components/success-message/success-message';
 import { RejectMessage } from '../../components/reject-message/reject-message';
@@ -17,7 +17,7 @@ export type proposalState = 'initial' | 'accepted' | 'rejected' | null;
   styleUrl: './home.css',
   imports: [SuccessMessage, RejectMessage, PrposeMessage],
 })
-export class Home {
+export class Home implements OnInit {
   public detail = signal<Queryparams>({
     yourName: '',
     valnetineName: '',
@@ -31,12 +31,8 @@ export class Home {
     this.proposalRes.set(res);
   }
 
-  constructor(
-    private router: ActivatedRoute,
-    private _router: Router,
-    private encryptService: Encrypt,
-  ) {
-    this.router.queryParams.subscribe(async (params) => {
+  public onstart():void{
+        this.router.queryParams.subscribe(async (params) => {
       const name = params['details'];
       const detail = JSON.parse(await this.encryptService.decrypt(name)) ?? null;
       if (!detail) {
@@ -44,8 +40,18 @@ export class Home {
       }
       this.detail.set(detail);
       this.currentDay.set(detail.day || '');
-
-      console.log(this.currentDay());
     });
+  }
+
+  constructor(
+    private router: ActivatedRoute,
+    private _router: Router,
+    private encryptService: Encrypt,
+  ) {
+    this.onstart();
+  }
+
+  ngOnInit(): void {
+    this.onstart();
   }
 }
