@@ -1,62 +1,14 @@
-<main class="z-10">
-  <!-- Simple Soft Background
-  <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-gradient-to-br from-pink-100/40 via-rose-100/30 to-pink-100/40"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] max-w-2xl h-[40vh]">
-      <div class="absolute inset-0 bg-gradient-to-r from-pink-300/10 to-rose-300/10 rounded-full blur-2xl animate-pulse-slow"></div>
-    </div>
-  </div> -->
+<main class="flex min-h-screen flex-col justify-center items-center bg-pink-50/40">
 
   <!-- Header -->
   <app-header></app-header>
-
-  <!-- Main Content Area -->
-  <div class="relative w-full min-h-[calc(100vh-80px)] flex items-center justify-center px-4 py-8 sm:px-6 sm:py-12 mt-10 rounded-4xl">
-    <!-- Main Card - Clean and Simple -->
-    <div class="relative w-full max-w-md sm:max-w-lg md:max-w-xl">
-      <!-- Simple Glow Effect -->
-      <div class="absolute -inset-2 sm:-inset-3 rounded-2xl bg-gradient-to-r from-pink-300/20 to-rose-300/20 blur-lg animate-pulse"></div>
-
-      <!-- Card Container -->
-      <div class="relative rounded-xl sm:rounded-2xl bg-white/50 backdrop-blur-sm  overflow-hidden shadow-2xl">
-
-        <!-- Card Content -->
-        <div class="p-6 sm:p-8 md:p-10">
-
-          <!-- Simple Heart Decoration -->
-          <div class="mb-6 sm:mb-8 flex justify-center">
-            <div class="relative">
-              <div class="absolute -inset-3 bg-gradient-to-r from-pink-400/20 to-rose-400/20 rounded-full blur animate-pulse"></div>
-              <div class="relative bg-gradient-to-r from-pink-500 to-rose-500 rounded-full p-3 shadow-md">
-                <span class="text-2xl sm:text-3xl">💖</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Content Area -->
-          <div class="relative">
-            <router-outlet></router-outlet>
-          </div>
-
-          <!-- Simple Bottom Text -->
-          <div class="mt-8 sm:mt-10 flex justify-center">
-            <div class="flex items-center gap-2 text-sm text-rose-500/70">
-              <span>✨</span>
-              <span class="font-medium">Made with love</span>
-              <span>✨</span>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- Subtle Corner Accents -->
-      <div class="absolute -top-2 -left-2 w-4 h-4 rounded-full bg-pink-400/30"></div>
-      <div class="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-rose-400/30"></div>
-      <div class="absolute -bottom-2 -left-2 w-4 h-4 rounded-full bg-pink-400/30"></div>
-      <div class="absolute -bottom-2 -right-2 w-4 h-4 rounded-full bg-rose-400/30"></div>
+  <div
+      class="max-w-5xl min-w-sm rounded-xl bg-white/60 shadow-lg
+             border border-pink-100 p-10"
+    >
+      <!-- Content -->
+      <router-outlet></router-outlet>
 
     </div>
-  </div>
+
 </main>

@@ -4,31 +4,27 @@ import {
   Inject,
   OnInit,
   Output,
-  input,
   ElementRef,
-  ViewChild
+  ViewChild,
+  input,
 } from '@angular/core';
-import { AsyncPipe, NgStyle, isPlatformBrowser } from '@angular/common';
+import { AsyncPipe, isPlatformBrowser, NgStyle } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { proposalState } from '../../pages/home/home';
 import { Queryparams } from '../../interfaces/queryparams';
-import {
-  ValentineDay,
-  ValentineProposeContent
-} from '../../interfaces/valentine-day';
+import { ValentineDay, ValentineProposeContent } from '../../interfaces/valentine-day';
 import { ValentineContentService } from '../../services/valentine-content-service';
 
 @Component({
   selector: 'app-prpose-message',
   standalone: true,
-  imports: [NgStyle, AsyncPipe],
+  imports: [AsyncPipe, NgStyle],
   templateUrl: './prpose-message.html',
   styleUrl: './prpose-message.css',
 })
 export class PrposeMessage implements OnInit {
-
   /* ================= INPUTS ================= */
 
   name = input<Queryparams>({
@@ -44,53 +40,40 @@ export class PrposeMessage implements OnInit {
 
   /* ================= VIEW ================= */
 
-  @ViewChild('actionZone') actionZone?: ElementRef<HTMLElement>;
-  @ViewChild('yesZone') yesZone?: ElementRef<HTMLElement>;
+  @ViewChild('containerRef') containerRef!: ElementRef<HTMLElement>;
+  @ViewChild('noBtn') noBtn!: ElementRef<HTMLElement>;
 
   /* ================= STATE ================= */
 
   content$!: Observable<ValentineProposeContent>;
   isMobile = false;
 
-  noButtonStyle = {
+  noButtonStyle: {
+    left: string;
+    top: string;
+  } = {
     left: '50%',
     top: '50%',
-    transform: 'translate(-50%, -50%)',
-    transition: 'all 0.35s ease-out'
   };
-
-  /* ================= INTERNALS ================= */
 
   private lastX = 0;
   private lastY = 0;
 
-  private readonly buttonWidth = 120;
-  private readonly buttonHeight = 52;
-  private readonly minDistance = 90;
+  public runningButton = false;
 
   constructor(
     private valentineService: ValentineContentService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
 
   /* ================= LIFECYCLE ================= */
 
   ngOnInit(): void {
-
     if (isPlatformBrowser(this.platformId)) {
-      this.isMobile =
-        window.matchMedia('(pointer: coarse)').matches ||
-        window.innerWidth < 768;
+      this.isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
     }
 
-    this.content$ = this.valentineService.getProposeContent(
-      this.valentineDay()
-    );
-
-    // Wait until DOM is rendered (because of @if + async)
-    this.content$.subscribe(() => {
-      setTimeout(() => this.centerNoButton(), 0);
-    });
+    this.content$ = this.valentineService.getProposeContent(this.valentineDay());
   }
 
   /* ================= ACTIONS ================= */
@@ -98,57 +81,33 @@ export class PrposeMessage implements OnInit {
   onYes(): void {
     this.response.emit('accepted');
   }
+  /* ================= NO BUTTON MOVEMENT ================= */
 
-  onNoHoverOrTouch(): void {
-    this.moveNoButton();
-  }
+  moveNoButton(): void {
+    if (!this.runningButton) {
+      this.runningButton = true;
+    }
 
-  /* ================= POSITIONING ================= */
+    if (!this.containerRef || !this.noBtn) return;
 
-  private centerNoButton(): void {
-    if (!this.actionZone || !this.yesZone || !isPlatformBrowser(this.platformId)) return;
+    const container = this.containerRef.nativeElement.getBoundingClientRect();
 
-    const containerRect = this.actionZone.nativeElement.getBoundingClientRect();
-    const yesRect = this.yesZone.nativeElement.getBoundingClientRect();
+    const button = this.noBtn.nativeElement.getBoundingClientRect();
 
-    // Start BELOW the YES button
-    const minY = yesRect.bottom - containerRect.top + 16;
+    const maxX = container.width - button.width;
+    const maxY = container.height - button.height;
 
-    const x = (containerRect.width - this.buttonWidth) / 2;
-    const y = minY + 10;
-
-    this.lastX = x;
-    this.lastY = y;
-
-    this.noButtonStyle = {
-      left: `${x}px`,
-      top: `${y}px`,
-      transform: 'translate(0, 0)',
-      transition: 'all 0.35s ease-out'
-    };
-  }
-
-  private moveNoButton(): void {
-    if (!this.actionZone || !this.yesZone || !isPlatformBrowser(this.platformId)) return;
-
-    const containerRect = this.actionZone.nativeElement.getBoundingClientRect();
-    const yesRect = this.yesZone.nativeElement.getBoundingClientRect();
-
-    const minY = yesRect.bottom - containerRect.top + 16;
-    const maxX = containerRect.width - this.buttonWidth;
-    const maxY = containerRect.height - this.buttonHeight;
+    const minDistance = this.isMobile ? 120 : 100;
 
     let x = 0;
     let y = 0;
     let distance = 0;
-    let attempts = 0;
 
     do {
       x = Math.random() * maxX;
-      y = minY + Math.random() * (maxY - minY);
+      y = Math.random() * maxY;
       distance = Math.hypot(x - this.lastX, y - this.lastY);
-      attempts++;
-    } while (distance < this.minDistance && attempts < 15);
+    } while (distance < minDistance);
 
     this.lastX = x;
     this.lastY = y;
@@ -156,8 +115,6 @@ export class PrposeMessage implements OnInit {
     this.noButtonStyle = {
       left: `${x}px`,
       top: `${y}px`,
-      transform: 'translate(0, 0)',
-      transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)'
     };
   }
 }

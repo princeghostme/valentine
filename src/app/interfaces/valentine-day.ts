@@ -51,3 +51,8 @@ export type ValentineContentMap = Record<
   ValentineDay,
   ValentineDayContent
 >;
+
+export interface LoveQuote {
+  text: string;
+  author?: string;
+}

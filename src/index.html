@@ -1,238 +1,256 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Valentine's Day 💖 | Create Your Love Story</title>
+  <head>
+    <meta charset="utf-8" />
+    <title>Valentine's Day 💖 | Create Your Love Story</title>
 
-  <base href="/" />
+    <base href="/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#f43f5e" />
-  <meta name="description" content="Create a beautiful Valentine's Day experience for your special someone. Express your love in a magical way." />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?auto=format&fit=crop&w=1200" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f43f5e" />
+    <meta
+      name="description"
+      content="Create a beautiful Valentine's Day experience for your special someone. Express your love in a magical way."
+    />
+    <meta
+      property="og:image"
+      content="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?auto=format&fit=crop&w=1200"
+    />
 
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <style>
-    /* Minimal Smooth Color Changing Background */
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(-45deg, #ffebee, #fce4ec, #f3e5f5, #e8eaf6);
-      background-size: 400% 400%;
-      animation: gradientFlow 15s ease infinite;
-      overflow-x: hidden;
-    }
-
-    @keyframes gradientFlow {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
-    /* Subtle floating hearts in background */
-    .bg-hearts {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-      opacity: 0.2;
-    }
-
-    .bg-heart {
-      position: absolute;
-      color: #f43f5e;
-      font-size: 24px;
-      animation: floatHeart 20s linear infinite;
-      opacity: 0;
-    }
-
-    @keyframes floatHeart {
-      0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.3;
-      }
-      90% {
-        opacity: 0.3;
-      }
-      100% {
-        transform: translateY(-100px) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* Smooth scroll behavior */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Selection color */
-    ::selection {
-      background-color: rgba(244, 63, 94, 0.2);
-      color: #881337;
-    }
-
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: rgba(244, 63, 94, 0.1);
-      border-radius: 4px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(to bottom, #f472b6, #ec4899);
-      border-radius: 4px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(to bottom, #ec4899, #db2777);
-    }
-
-    /* Loading state for Angular app */
-    .app-loading {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .loading-heart {
-      font-size: 48px;
-      animation: heartbeat 1.5s ease-in-out infinite;
-    }
-
-    @keyframes heartbeat {
-      0%, 100% {
-        transform: scale(1);
-      }
-      25% {
-        transform: scale(1.1);
-      }
-      50% {
-        transform: scale(1);
-      }
-      75% {
-        transform: scale(1.05);
-      }
-    }
-
-    .loading-text {
-      font-family: 'Dancing Script', cursive;
-      font-size: 24px;
-      color: #f43f5e;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        opacity: 0.8;
-      }
-      50% {
-        opacity: 1;
-      }
-    }
-  </style>
-</head>
-
-<body class="app-root">
-  <!-- Background hearts -->
-  <div class="bg-hearts" id="bgHearts"></div>
-
-  <!-- Loading state (shown until Angular loads) -->
-  <div class="app-loading" id="loadingScreen">
-    <div class="loading-heart">💖</div>
-    <div class="loading-text">Loading love...</div>
-  </div>
-
-  <!-- Angular App -->
-  <app-root></app-root>
-
-  <script>
-    // Create background hearts
-    document.addEventListener('DOMContentLoaded', function() {
-      const bgHearts = document.getElementById('bgHearts');
-      const loadingScreen = document.getElementById('loadingScreen');
-
-      // Create 15 floating hearts in background
-      for (let i = 0; i < 15; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'bg-heart';
-        heart.innerHTML = '❤️';
-        heart.style.left = `${Math.random() * 100}vw`;
-        heart.style.animationDelay = `${Math.random() * 20}s`;
-        heart.style.animationDuration = `${15 + Math.random() * 10}s`;
-        heart.style.fontSize = `${16 + Math.random() * 16}px`;
-        bgHearts.appendChild(heart);
+    <style>
+      /* Minimal Smooth Color Changing Background */
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(-45deg, #ffebee, #fce4ec, #f3e5f5, #e8eaf6);
+        background-size: 400% 400%;
+        animation: gradientFlow 15s ease infinite;
+        overflow-x: hidden;
       }
 
-      // Hide loading screen when Angular app loads
-      // This is a simple approach - you might want to use Angular's bootstrap events
-      setTimeout(() => {
-        if (loadingScreen) {
-          loadingScreen.style.opacity = '0';
-          loadingScreen.style.transition = 'opacity 0.5s ease';
-          setTimeout(() => {
-            loadingScreen.style.display = 'none';
-          }, 500);
+      @keyframes gradientFlow {
+        0% {
+          background-position: 0% 50%;
         }
-      }, 1500);
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
 
-      // Add smooth click effect
-      document.addEventListener('click', function(e) {
-        const ripple = document.createElement('div');
-        ripple.style.position = 'fixed';
-        ripple.style.left = `${e.clientX}px`;
-        ripple.style.top = `${e.clientY}px`;
-        ripple.style.width = '0';
-        ripple.style.height = '0';
-        ripple.style.borderRadius = '50%';
-        ripple.style.background = 'radial-gradient(circle, rgba(244,63,94,0.2) 0%, transparent 70%)';
-        ripple.style.pointerEvents = 'none';
-        ripple.style.zIndex = '9999';
-        ripple.style.transform = 'translate(-50%, -50%)';
+      /* Subtle floating hearts in background */
+      .bg-hearts {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0.2;
+      }
 
-        document.body.appendChild(ripple);
+      .bg-heart {
+        position: absolute;
+        color: #f43f5e;
+        font-size: 24px;
+        animation: floatHeart 20s linear infinite;
+        opacity: 0;
+      }
 
-        ripple.animate([
-          { width: '0', height: '0', opacity: 1 },
-          { width: '100px', height: '100px', opacity: 0 }
-        ], {
-          duration: 600,
-          easing: 'ease-out'
-        });
+      @keyframes floatHeart {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.3;
+        }
+        90% {
+          opacity: 0.3;
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+          opacity: 0;
+        }
+      }
 
+      /* Smooth scroll behavior */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Selection color */
+      ::selection {
+        background-color: rgba(244, 63, 94, 0.2);
+        color: #881337;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: rgba(244, 63, 94, 0.1);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, #f472b6, #ec4899);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(to bottom, #ec4899, #db2777);
+      }
+
+      /* Loading state for Angular app */
+      .app-loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .loading-heart {
+        font-size: 48px;
+        animation: heartbeat 1.5s ease-in-out infinite;
+      }
+
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.1);
+        }
+        50% {
+          transform: scale(1);
+        }
+        75% {
+          transform: scale(1.05);
+        }
+      }
+
+      .loading-text {
+        font-family: 'Dancing Script', cursive;
+        font-size: 24px;
+        color: #f43f5e;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.8;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="app-root">
+    <!-- Background hearts -->
+    <div class="bg-hearts" id="bgHearts"></div>
+
+    <!-- Loading state (shown until Angular loads) -->
+    <div class="app-loading" id="loadingScreen">
+      <div class="loading-heart">💖</div>
+      <div class="loading-text">Loading love...</div>
+    </div>
+
+    <!-- Angular App -->
+    <app-root></app-root>
+
+    <script>
+      // Create background hearts
+      document.addEventListener('DOMContentLoaded', function () {
+        const bgHearts = document.getElementById('bgHearts');
+        const loadingScreen = document.getElementById('loadingScreen');
+
+        // Create 15 floating hearts in background
+        for (let i = 0; i < 15; i++) {
+          const heart = document.createElement('div');
+          heart.className = 'bg-heart';
+          heart.innerHTML = '❤️';
+          heart.style.left = `${Math.random() * 100}vw`;
+          heart.style.animationDelay = `${Math.random() * 20}s`;
+          heart.style.animationDuration = `${15 + Math.random() * 10}s`;
+          heart.style.fontSize = `${16 + Math.random() * 16}px`;
+          bgHearts.appendChild(heart);
+        }
+
+        // Hide loading screen when Angular app loads
+        // This is a simple approach - you might want to use Angular's bootstrap events
         setTimeout(() => {
-          if (ripple.parentNode) {
-            ripple.parentNode.removeChild(ripple);
+          if (loadingScreen) {
+            loadingScreen.style.opacity = '0';
+            loadingScreen.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+              loadingScreen.style.display = 'none';
+            }, 500);
           }
-        }, 600);
+        }, 1500);
+
+        // Add smooth click effect
+        document.addEventListener('click', function (e) {
+          const ripple = document.createElement('div');
+          ripple.style.position = 'fixed';
+          ripple.style.left = `${e.clientX}px`;
+          ripple.style.top = `${e.clientY}px`;
+          ripple.style.width = '0';
+          ripple.style.height = '0';
+          ripple.style.borderRadius = '50%';
+          ripple.style.background =
+            'radial-gradient(circle, rgba(244,63,94,0.2) 0%, transparent 70%)';
+          ripple.style.pointerEvents = 'none';
+          ripple.style.zIndex = '9999';
+          ripple.style.transform = 'translate(-50%, -50%)';
+
+          document.body.appendChild(ripple);
+
+          ripple.animate(
+            [
+              { width: '0', height: '0', opacity: 1 },
+              { width: '100px', height: '100px', opacity: 0 },
+            ],
+            {
+              duration: 600,
+              easing: 'ease-out',
+            },
+          );
+
+          setTimeout(() => {
+            if (ripple.parentNode) {
+              ripple.parentNode.removeChild(ripple);
+            }
+          }, 600);
+        });
       });
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>
