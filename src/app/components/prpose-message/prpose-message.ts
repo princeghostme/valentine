@@ -81,6 +81,9 @@ export class PrposeMessage implements OnInit {
   onYes(): void {
     this.response.emit('accepted');
   }
+  onNo(): void {
+    this.response.emit('rejected');
+  }
   /* ================= NO BUTTON MOVEMENT ================= */
 
   moveNoButton(): void {
