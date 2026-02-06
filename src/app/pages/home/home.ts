@@ -49,7 +49,7 @@ export class Home implements OnInit {
       case 14:
         return 'valentine';
       default:
-        return 'valentine';
+        return 'default';
     }
   }
 
