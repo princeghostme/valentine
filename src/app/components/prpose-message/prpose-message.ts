@@ -82,8 +82,16 @@ export class PrposeMessage implements OnInit {
     this.response.emit('accepted');
   }
   onNo(): void {
-    this.response.emit('rejected');
+    const chance = Math.random(); // 0.0 → 0.999...
+    if (chance < 0.01) {
+      // 1% probability
+      this.response.emit('rejected');
+      return;
+    }
+
+    this.moveNoButton();
   }
+
   /* ================= NO BUTTON MOVEMENT ================= */
 
   moveNoButton(): void {
