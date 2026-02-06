@@ -1,54 +1,55 @@
-/* Layer */
-.celebration-layer {
-  z-index: 0;
+/* Container */
+.confetti-layer {
+  overflow: hidden;
 }
 
-/* Falling items */
-.fall {
+/* Confetti base */
+.confetti {
   position: absolute;
-  top: -10%;
-  font-size: 1.2rem;
-  opacity: 0.8;
-  animation-name: fallDown;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 18px;
+  border-radius: 2px;
+  opacity: 0.95;
+  transform-origin: center;
+  animation: confetti-pop 3.5s cubic-bezier(0.15, 0.7, 0.3, 1) forwards;
 }
 
-/* Individual positioning + timing */
-.fall-1  { left: 5%;  animation-duration: 6s; }
-.fall-2  { left: 10%; animation-duration: 8s; }
-.fall-3  { left: 15%; animation-duration: 7s; }
-.fall-4  { left: 20%; animation-duration: 9s; }
-.fall-5  { left: 25%; animation-duration: 6.5s; }
-.fall-6  { left: 30%; animation-duration: 8.5s; }
-.fall-7  { left: 35%; animation-duration: 7.5s; }
-.fall-8  { left: 40%; animation-duration: 9.5s; }
-.fall-9  { left: 45%; animation-duration: 6.8s; }
-.fall-10 { left: 50%; animation-duration: 8.8s; }
-.fall-11 { left: 55%; animation-duration: 7.2s; }
-.fall-12 { left: 60%; animation-duration: 9.2s; }
-.fall-13 { left: 65%; animation-duration: 6.2s; }
-.fall-14 { left: 70%; animation-duration: 8.2s; }
-.fall-15 { left: 75%; animation-duration: 7.8s; }
-.fall-16 { left: 80%; animation-duration: 9.8s; }
-.fall-17 { left: 85%; animation-duration: 6.9s; }
-.fall-18 { left: 90%; animation-duration: 8.9s; }
+/* Individual trajectories */
+.c1  { background:#ec4899; animation-delay:0s;   --x:-260px; --y:-320px; --r:720deg; }
+.c2  { background:#f43f5e; animation-delay:0.05s;--x:260px;  --y:-300px; --r:-720deg; }
+.c3  { background:#fb7185; animation-delay:0.1s; --x:-200px; --y:-260px; --r:680deg; }
+.c4  { background:#fda4af; animation-delay:0.15s;--x:200px;  --y:-280px; --r:-680deg; }
 
+.c5  { background:#f472b6; animation-delay:0.2s; --x:-320px; --y:-180px; --r:760deg; }
+.c6  { background:#e879f9; animation-delay:0.25s;--x:320px;  --y:-160px; --r:-760deg; }
 
+.c7  { background:#c084fc; animation-delay:0.3s; --x:-150px; --y:-120px; --r:640deg; }
+.c8  { background:#a855f7; animation-delay:0.35s;--x:150px;  --y:-140px; --r:-640deg; }
 
-/* Animation */
-@keyframes fallDown {
+.c9  { background:#fb7185; animation-delay:0.4s; --x:-280px; --y:-90px;  --r:700deg; }
+.c10 { background:#f43f5e; animation-delay:0.45s;--x:280px;  --y:-100px; --r:-700deg; }
+
+.c11 { background:#ec4899; animation-delay:0.5s; --x:-90px;  --y:-60px;  --r:520deg; }
+.c12 { background:#fda4af; animation-delay:0.55s;--x:90px;   --y:-80px;  --r:-520deg; }
+
+/* Physics animation */
+@keyframes confetti-pop {
   0% {
-    transform: translateY(0) rotate(0deg);
+    transform: translate(-50%, -50%) scale(0.2) rotate(0deg);
     opacity: 0;
   }
 
-  10% {
+  15% {
     opacity: 1;
   }
 
   100% {
-    transform: translateY(120vh) rotate(180deg);
-    opacity: 1;
+    transform: translate(
+      calc(-50% + var(--x)),
+      calc(-50% + var(--y) + 420px)
+    ) rotate(var(--r));
+    opacity: 0;
   }
 }

@@ -1,29 +1,21 @@
 @if (content$ | async; as c) {
   <!-- Celebration Layer -->
-<!-- Continuous Celebration Layer -->
-<div class="celebration-layer pointer-events-none absolute inset-0 overflow-hidden">
-  <span class="fall fall-1">❤️</span>
-  <span class="fall fall-2">💖</span>
-  <span class="fall fall-3">💗</span>
-  <span class="fall fall-4">💓</span>
-  <span class="fall fall-5">💕</span>
-  <span class="fall fall-6">💞</span>
-
-  <span class="fall fall-7">💘</span>
-  <span class="fall fall-8">😍</span>
-  <span class="fall fall-9">🥰</span>
-  <span class="fall fall-10">😘</span>
-  <span class="fall fall-11">🌹</span>
-  <span class="fall fall-12">🌸</span>
-
-  <span class="fall fall-13">💐</span>
-  <span class="fall fall-14">✨</span>
-  <span class="fall fall-15">💫</span>
-  <span class="fall fall-16">🫶</span>
-  <span class="fall fall-17">🤍</span>
-  <span class="fall fall-18">💝</span>
-</div>
-
+@if (showCelebration) {
+  <div class="confetti-layer pointer-events-none fixed inset-0 z-50">
+    <span class="confetti c1"></span>
+    <span class="confetti c2"></span>
+    <span class="confetti c3"></span>
+    <span class="confetti c4"></span>
+    <span class="confetti c5"></span>
+    <span class="confetti c6"></span>
+    <span class="confetti c7"></span>
+    <span class="confetti c8"></span>
+    <span class="confetti c9"></span>
+    <span class="confetti c10"></span>
+    <span class="confetti c11"></span>
+    <span class="confetti c12"></span>
+  </div>
+}
 
 
   <div class="animate-fade-in relative px-4 py-6 z-10">

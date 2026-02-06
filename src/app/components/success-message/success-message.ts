@@ -49,10 +49,14 @@ export class SuccessMessage {
   valentineDay = input.required<ValentineDay>();
   content$!: Observable<ValentineSuccessContent>;
   constructor(private valentineService: ValentineContentService) {}
+  showCelebration = true;
 
   ngOnInit(): void {
     this.content$ = this.valentineService.getSuccessContent(this.valentineDay());
     this.pickRandomQuote();
+    setTimeout(() => {
+      this.showCelebration = false;
+    }, 3500); // matches CSS animation duration
   }
 
   private pickRandomQuote(): void {
