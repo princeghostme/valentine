@@ -1,0 +1,54 @@
+/* Layer */
+.celebration-layer {
+  z-index: 0;
+}
+
+/* Falling items */
+.fall {
+  position: absolute;
+  top: -10%;
+  font-size: 1.2rem;
+  opacity: 0.8;
+  animation-name: fallDown;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Individual positioning + timing */
+.fall-1  { left: 5%;  animation-duration: 6s; }
+.fall-2  { left: 10%; animation-duration: 8s; }
+.fall-3  { left: 15%; animation-duration: 7s; }
+.fall-4  { left: 20%; animation-duration: 9s; }
+.fall-5  { left: 25%; animation-duration: 6.5s; }
+.fall-6  { left: 30%; animation-duration: 8.5s; }
+.fall-7  { left: 35%; animation-duration: 7.5s; }
+.fall-8  { left: 40%; animation-duration: 9.5s; }
+.fall-9  { left: 45%; animation-duration: 6.8s; }
+.fall-10 { left: 50%; animation-duration: 8.8s; }
+.fall-11 { left: 55%; animation-duration: 7.2s; }
+.fall-12 { left: 60%; animation-duration: 9.2s; }
+.fall-13 { left: 65%; animation-duration: 6.2s; }
+.fall-14 { left: 70%; animation-duration: 8.2s; }
+.fall-15 { left: 75%; animation-duration: 7.8s; }
+.fall-16 { left: 80%; animation-duration: 9.8s; }
+.fall-17 { left: 85%; animation-duration: 6.9s; }
+.fall-18 { left: 90%; animation-duration: 8.9s; }
+
+
+
+/* Animation */
+@keyframes fallDown {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(120vh) rotate(180deg);
+    opacity: 1;
+  }
+}
